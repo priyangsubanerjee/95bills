@@ -100,7 +100,9 @@ function Sidenav() {
         <h2 className="text-sm font-semibold mt-3 text-slate-700">
           {session.data.user.name}
         </h2>
-        <p className="text-xs text-slate-500 mt-1">{session.data.user.email}</p>
+        <p className="text-xs text-slate-500 mt-1 font-medium">
+          {session.data.user.email}
+        </p>
         <button className="text-white font-medium text-xs bg-slate-500 hover:bg-slate-600 w-fit px-4 py-2 rounded mt-6">
           Logout
         </button>
