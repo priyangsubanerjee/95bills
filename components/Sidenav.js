@@ -7,13 +7,15 @@ import React, { useContext, useEffect, useState } from "react";
 
 function Sidenav() {
   const session = useSession();
-  const { sidenav_menu, tab, setTab } = useContext(GlobalStateContext) || [];
+  const { sidenav_menu, tab, setTab, setSidenavOpen } =
+    useContext(GlobalStateContext) || [];
   const router = useRouter();
 
   useEffect(() => {
     if (!router.query.tab) {
       setTab(0);
     }
+
     switch (router.query.tab) {
       case "invoices":
         setTab(0);
@@ -69,6 +71,7 @@ function Sidenav() {
                   router.push(`/dashboard?tab=${item.tab}`, undefined, {
                     shallow: true,
                   });
+                  setSidenavOpen(false);
                 }}
                 className={`py-3 px-4 ${
                   tab == i && "bg-slate-200 active:bg-slate-200"
