@@ -79,7 +79,7 @@ function Dashboard() {
                 />
               </svg>
             </button>
-            <h1 className="w-fit text-2xl lg:text-5xl text-slate-700 font-bold font-poppins">
+            <h1 className="w-fit text-2xl lg:text-4xl text-slate-700 font-bold font-poppins">
               {router.query.tab
                 ? router.query.tab?.charAt(0).toUpperCase() +
                   router.query.tab?.slice(1)
@@ -456,6 +456,8 @@ function Dashboard() {
               </div>
             </div>
           ) : tab == 3 ? (
+            <div>Customers</div>
+          ) : tab == 4 ? (
             <div>Settings</div>
           ) : null}
         </div>
