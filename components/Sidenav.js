@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import React from "react";
 
 function Sidenav() {
@@ -111,6 +111,12 @@ function Sidenav() {
             <p className="text-xs text-slate-500 mt-1">
               {session.data.user.email}
             </p>
+            <button
+              className="text-red-600 font-poppins mt-4 text-sm font-medium"
+              onClick={() => signOut()}
+            >
+              Logout
+            </button>
           </div>
         </div>
 
