@@ -7,11 +7,11 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   return (
     <main className="fixed inset-0 flex items-center justify-center">
-      <div className="bg-slate-100 min-w-[500px] rounded-md overflow-hidden">
+      <div className="bg-white w-full h-full lg:h-fit lg:w-fit lg:min-w-[500px] overflow-hidden">
         <img
           src="https://assets.keap.com/image/upload/b_rgb:FFFFFF,c_limit,dpr_1,f_auto,h_395,q_95,w_569/v1590531768/customer-service/customer%20experience/GettyImages-1197547531.jpg"
           alt=""
-          className="h-72 object-cover w-full"
+          className="h-64 object-cover w-full"
         />
         <div className="text-center p-8 font-poppins">
           <h1 className="text-2xl text-slate-700 font-extrabold">
@@ -26,7 +26,7 @@ export default function Home() {
             Sign in to get started 🎉
           </p>
           <div className="mt-8 grid grid-cols-2 gap-4">
-            <button className="flex justify-center items-center bg-white px-6 py-3 rounded-md">
+            <button className="flex justify-center items-center bg-slate-100 px-6 py-3 rounded-md">
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/706px-Google_%22G%22_Logo.svg.png"
                 alt=""
@@ -34,7 +34,7 @@ export default function Home() {
               />
               <span className="text-sm font-medium text-slate-700">Google</span>
             </button>
-            <button className="flex justify-center items-center bg-white px-6 py-3 rounded-md">
+            <button className="flex justify-center items-center bg-slate-100 px-6 py-3 rounded-md">
               <img
                 src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
                 alt=""
