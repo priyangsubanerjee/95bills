@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <main className="fixed inset-0 flex items-center justify-center">
+    <main className="lg:flex lg:h-screen items-center justify-center overflow-auto">
       <div className="bg-white w-full h-full lg:h-fit lg:w-fit lg:min-w-[500px] overflow-hidden">
         <img
           src="https://assets.keap.com/image/upload/b_rgb:FFFFFF,c_limit,dpr_1,f_auto,h_395,q_95,w_569/v1590531768/customer-service/customer%20experience/GettyImages-1197547531.jpg"
