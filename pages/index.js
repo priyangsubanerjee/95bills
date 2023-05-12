@@ -44,7 +44,9 @@ export default function Home() {
             </button>
           </div>
 
-          <p className=" text-center text-slate-500">© 2021 95bills.com</p>
+          <p className="mt-14 text-xs text-center text-slate-500">
+            © 2021 95bills.com
+          </p>
         </div>
       </div>
     </main>
