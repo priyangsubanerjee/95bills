@@ -11,7 +11,25 @@ function Sidenav() {
           95<span className="font-light">Bills.com</span>
         </h1>
       </div>
-      <ul className="p-4 text-slate-700 text-sm font-medium space-y-2">
+      <div className="flex items-center justify-center">
+        <button className="flex items-center space-x-2 bg-white text-xs border font-medium font-poppins py-2 px-5 rounded-full">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="w-3 h-3"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M15.75 4.5a3 3 0 11.825 2.066l-8.421 4.679a3.002 3.002 0 010 1.51l8.421 4.679a3 3 0 11-.729 1.31l-8.421-4.678a3 3 0 110-4.132l8.421-4.679a3 3 0 01-.096-.755z"
+              clip-rule="evenodd"
+            />
+          </svg>
+
+          <span>Share</span>
+        </button>
+      </div>
+      <ul className="p-4 mt-2 text-slate-700 text-sm font-medium space-y-2">
         <li className="py-3 px-4 hover:bg-slate-200 bg-slate-200 rounded-md flex items-center space-x-3">
           <svg
             xmlns="http://www.w3.org/2000/svg"
