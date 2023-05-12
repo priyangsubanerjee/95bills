@@ -5,7 +5,7 @@ import React from "react";
 function Sidenav() {
   const session = useSession();
   return (
-    <div className="h-full w-72 lg:w-60 bg-slate-50 relative shrink-0">
+    <div className="h-screen w-72 lg:w-60 bg-slate-50 relative shrink-0 flex flex-col overflow-auto">
       <div className="text-center h-20 flex items-center lg:justify-center justify-between font-poppins px-6">
         <h1 className="text-xl text-slate-700 font-extrabold">
           95<span className="font-light">Bills.com</span>
@@ -97,7 +97,7 @@ function Sidenav() {
           Generate invoice
         </button>
       </div>
-      <div className="absolute bottom-20 md:bottom-0 inset-x-0 w-full">
+      <div className="lg:absolute lg:bottom-20 mt-10 md:bottom-0 inset-x-0 w-full">
         <div className="space-y-3 p-5">
           <img
             src={session.data.user.image}
@@ -112,10 +112,10 @@ function Sidenav() {
               {session.data.user.email}
             </p>
             <button
-              className="text-red-600 font-poppins mt-4 text-sm font-medium"
+              className="text-red-600 font-poppins mt-4 text-xs font-medium"
               onClick={() => signOut()}
             >
-              Logout
+              Logout from this device
             </button>
           </div>
         </div>
