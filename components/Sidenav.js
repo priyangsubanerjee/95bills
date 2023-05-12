@@ -5,8 +5,8 @@ import React from "react";
 function Sidenav() {
   const session = useSession();
   return (
-    <div className="h-screen w-72 lg:w-60 bg-slate-50 relative shrink-0 flex flex-col overflow-y-auto pb-44">
-      <div className="text-center h-20 flex items-center lg:justify-center justify-between font-poppins px-6">
+    <div className="h-screen w-72 lg:w-60 bg-slate-50 relative shrink-0 flex flex-col overflow-y-auto">
+      <div className="text-center h-20 flex items-center lg:justify-center justify-between font-poppins p-6">
         <h1 className="text-xl text-slate-700 font-extrabold">
           95<span className="font-light">Bills.com</span>
         </h1>
