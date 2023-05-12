@@ -36,13 +36,15 @@ export default function Home() {
             </button>
             <button className="flex justify-center items-center bg-slate-100 px-6 py-3 rounded-md">
               <img
-                src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+                src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
                 alt=""
                 className="h-5 w-5 mr-3"
               />
               <span className="text-sm font-medium text-slate-700">Github</span>
             </button>
           </div>
+
+          <p className=" text-center text-slate-500">© 2021 95bills.com</p>
         </div>
       </div>
     </main>
