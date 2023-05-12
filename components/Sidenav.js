@@ -92,6 +92,11 @@ function Sidenav() {
           <span>Settings</span>
         </li>
       </ul>
+      <div className="p-4 mt-5">
+        <button className="w-full font-poppins hover:bg-indigo-600 bg-indigo-500 text-white px-4 py-3 rounded text-sm">
+          Generate invoice
+        </button>
+      </div>
       <div className="absolute bottom-20 md:bottom-0 inset-x-0 w-full">
         <div className="space-y-3 p-5">
           <img

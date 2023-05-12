@@ -4,7 +4,7 @@ import Sidenav from "./Sidenav";
 export default function Navbar() {
   const [sidenav, setSidenav] = useState(false);
   return (
-    <div className="h-20 bg-slate-50 flex items-center px-6">
+    <div className="h-20 bg-slate-50 flex items-center px-6 lg:hidden">
       <div className="flex items-center space-x-4 lg:hidden">
         <button onClick={() => setSidenav(true)}>
           <svg
