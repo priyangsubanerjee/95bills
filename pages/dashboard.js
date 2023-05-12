@@ -101,7 +101,7 @@ function Dashboard() {
             <span>Settings</span>
           </li>
         </ul>
-        <div className="absolute bottom-0 inset-x-0 w-full">
+        <div className="absolute bottom-10 md:bottom-0 inset-x-0 w-full">
           <div className="space-y-3 p-5">
             <img
               src={session.data.user.image}
