@@ -22,9 +22,11 @@ export default function Navbar() {
       <h1 className="text-xl text-slate-700 font-extrabold ml-5">
         95<span className="font-light">Bills.com</span>
       </h1>
-      <button className="ml-auto bg-white px-4 py-2 rounded-md text-sm font-medium">
-        Create
-      </button>
+      <div className="ml-auto">
+        <button className=" bg-white px-4 py-2 rounded-md text-sm font-medium">
+          Create
+        </button>
+      </div>
     </div>
   );
 }
