@@ -2,10 +2,34 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import Head from "next/head";
+import { signIn, useSession } from "next-auth/react";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "pages/api/auth/[...nextauth]";
+
+export async function getServerSideProps(context) {
+  const session = await getServerSession(context.req, context.res, authOptions);
+
+  if (session) {
+    return {
+      redirect: {
+        destination: "/dashboard",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      session,
+    },
+  };
+}
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const session = useSession();
+
   return (
     <main className="lg:flex lg:h-screen items-center justify-center overflow-auto">
       <Head>
@@ -38,7 +62,12 @@ export default function Home() {
               />
               <span className="text-sm font-medium text-slate-700">Google</span>
             </button>
-            <button className="flex justify-center items-center bg-slate-100 px-6 py-3 rounded-md">
+            <button
+              onClick={() => {
+                signIn("github");
+              }}
+              className="flex justify-center items-center bg-slate-100 px-6 py-3 rounded-md"
+            >
               <img
                 src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
                 alt=""
