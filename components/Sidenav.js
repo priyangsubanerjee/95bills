@@ -1,54 +1,35 @@
 /* eslint-disable @next/next/no-img-element */
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import React from "react";
 
 function Sidenav() {
   const session = useSession();
   return (
-    <div className="h-screen w-72 lg:w-60 bg-slate-50 shrink-0 flex flex-col overflow-y-auto">
-      <div className="text-center h-20 flex items-center lg:justify-center justify-between font-poppins p-6">
+    <div className="bg-slate-100 w-72 lg:w-60 h-full overflow-y-auto pb-28 lg:pb-0 shrink-0">
+      <div className="text-center p-8 font-poppins">
         <h1 className="text-xl text-slate-700 font-extrabold">
           95<span className="font-light">Bills.com</span>
         </h1>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-5 h-5 lg:hidden"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M6 18L18 6M6 6l12 12"
-          />
-        </svg>
       </div>
-      <ul className="px-4 font-poppins space-y-3">
-        <li className="py-3 px-4 rounded-md bg-slate-200 text-slate-600 font-medium flex space-x-3 items-center text-sm">
+      <ul className="p-4 text-slate-700 text-sm font-medium space-y-2">
+        <li className="py-3 px-4 hover:bg-slate-200 bg-slate-200 rounded-md flex items-center space-x-3">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            class="w-5 h-5 text-slate-700"
+            class="w-4 h-4"
           >
-            <path d="M4.5 3.75a3 3 0 00-3 3v.75h21v-.75a3 3 0 00-3-3h-15z" />
-            <path
-              fill-rule="evenodd"
-              d="M22.5 9.75h-21v7.5a3 3 0 003 3h15a3 3 0 003-3v-7.5zm-18 3.75a.75.75 0 01.75-.75h6a.75.75 0 010 1.5h-6a.75.75 0 01-.75-.75zm.75 2.25a.75.75 0 000 1.5h3a.75.75 0 000-1.5h-3z"
-              clip-rule="evenodd"
-            />
+            <path d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75zM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 01-1.875-1.875V8.625zM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 013 19.875v-6.75z" />
           </svg>
 
           <span>Invoices</span>
         </li>
-        <li className="py-3 px-4 rounded-md bg-slate-200/0 text-slate-600 font-medium flex space-x-3 items-center text-sm">
+        <li className="py-3 px-4 hover:bg-slate-200 bg-slate-300/0 rounded-md flex items-center space-x-3">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            class="w-5 h-5 text-slate-700"
+            class="w-4 h-4"
           >
             <path
               fill-rule="evenodd"
@@ -59,12 +40,12 @@ function Sidenav() {
 
           <span>Paid</span>
         </li>
-        <li className="py-3 px-4 rounded-md bg-slate-200/0 text-slate-600 font-medium flex space-x-3 items-center text-sm">
+        <li className="py-3 px-4 hover:bg-slate-200 bg-slate-300/0/0 rounded-md flex items-center space-x-3">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            class="w-5 h-5 text-slate-700"
+            class="w-4 h-4"
           >
             <path
               fill-rule="evenodd"
@@ -75,12 +56,12 @@ function Sidenav() {
 
           <span>Due</span>
         </li>
-        <li className="py-3 px-4 rounded-md bg-slate-200/0 text-slate-600 font-medium flex space-x-3 items-center text-sm">
+        <li className="py-3 px-4 hover:bg-slate-200 bg-slate-300/0/0 rounded-md flex items-center space-x-3">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            class="w-5 h-5 text-slate-700"
+            class="w-4 h-4"
           >
             <path
               fill-rule="evenodd"
@@ -92,40 +73,19 @@ function Sidenav() {
           <span>Settings</span>
         </li>
       </ul>
-      <div className="p-4">
-        <button className="w-full font-poppins hover:bg-indigo-600 bg-indigo-500 text-white px-4 py-3 rounded text-sm">
-          Generate invoice
+      <div className="p-6 font-poppins">
+        <img
+          className="h-12 w-12 rounded-full"
+          src={session.data.user.image}
+          alt=""
+        />
+        <h2 className="text-sm font-semibold mt-3 text-slate-700">
+          {session.data.user.name}
+        </h2>
+        <p className="text-xs text-slate-500 mt-1">{session.data.user.email}</p>
+        <button className="text-white font-medium text-xs bg-slate-500 hover:bg-slate-600 w-fit px-4 py-2 rounded mt-6">
+          Logout
         </button>
-      </div>
-      <div className="mt-6 w-full">
-        <div className="space-y-3 p-5">
-          <img
-            src={session.data.user.image}
-            className="h-10 w-10 rounded-full"
-            alt=""
-          />
-          <div>
-            <h2 className="text-sm text-slate-700 font-medium">
-              {session.data.user.name}
-            </h2>
-            <p className="text-xs text-slate-500 mt-1">
-              {session.data.user.email}
-            </p>
-            <button
-              className="text-red-600 font-poppins mt-4 text-xs font-medium"
-              onClick={() => signOut()}
-            >
-              Logout from this device
-            </button>
-          </div>
-        </div>
-
-        <div className=" bg-slate-200 p-5">
-          <h2 className="text-slate-700 font-bold text-sm">Need help?</h2>
-          <p className="text-xs text-slate-500 mt-2">
-            Reach us at tem@95bills.com
-          </p>
-        </div>
       </div>
     </div>
   );
