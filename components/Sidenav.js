@@ -5,7 +5,7 @@ import React from "react";
 function Sidenav() {
   const session = useSession();
   return (
-    <div className="h-screen w-72 lg:w-60 bg-slate-50 relative shrink-0 flex flex-col overflow-auto">
+    <div className="h-screen w-72 lg:w-60 bg-slate-50 relative shrink-0 flex flex-col overflow-auto pb-10">
       <div className="text-center h-20 flex items-center lg:justify-center justify-between font-poppins px-6">
         <h1 className="text-xl text-slate-700 font-extrabold">
           95<span className="font-light">Bills.com</span>
