@@ -57,7 +57,7 @@ function Dashboard() {
         )}
       </AnimatePresence>
 
-      <div>
+      <div className="w-full h-full overflow-y-auto">
         <button onClick={() => setSidenavOpen(true)}>Open</button>
       </div>
     </div>
