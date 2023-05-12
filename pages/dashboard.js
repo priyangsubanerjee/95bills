@@ -28,7 +28,7 @@ function Dashboard() {
   console.log(session);
   return (
     <div className="h-screen w-screen fixed inset-0 bg-white flex overflow-hidden">
-      <div className="h-full w-60 bg-slate-50 relative shrink-0">
+      <div className="h-full w-60 bg-slate-50 relative shrink-0 hidden lg:block">
         <div className="text-center h-20 flex items-center justify-center font-poppins">
           <h1 className="text-xl text-slate-700 font-extrabold">
             95<span className="font-light">Bills.com</span>
