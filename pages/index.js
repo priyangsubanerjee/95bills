@@ -54,7 +54,12 @@ export default function Home() {
             Sign in to get started 🎉
           </p>
           <div className="mt-8 grid grid-cols-2 gap-4">
-            <button className="flex justify-center items-center bg-slate-100 px-6 py-3 rounded-md">
+            <button
+              onClick={() => {
+                signIn("google");
+              }}
+              className="flex justify-center items-center bg-slate-100 px-6 py-3 rounded-md"
+            >
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/706px-Google_%22G%22_Logo.svg.png"
                 alt=""

@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import GlobalStateContext from "@/states/globalStateContext";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 
@@ -89,7 +90,10 @@ function Sidenav() {
         <p className="text-xs text-slate-500 mt-1 font-medium">
           {session.data.user.email}
         </p>
-        <button className="text-white font-medium text-xs bg-slate-500 hover:bg-slate-600 w-fit px-4 py-2 rounded mt-6">
+        <button
+          onClick={() => signOut()}
+          className="text-white font-medium text-xs bg-slate-500 hover:bg-slate-600 w-fit px-4 py-2 rounded mt-6"
+        >
           Logout
         </button>
       </div>
