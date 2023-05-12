@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import React from "react";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "pages/api/auth/[...nextauth]";
+import Navbar from "@/components/Navbar";
 
 export async function getServerSideProps(context) {
   const session = await getServerSession(context.req, context.res, authOptions);
@@ -127,7 +128,7 @@ function Dashboard() {
         </div>
       </div>
       <div className="h-full w-full overflow-y-auto bg-white">
-        <div className="h-20 w-full flex items-center"></div>
+        <Navbar />
       </div>
     </div>
   );
