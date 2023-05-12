@@ -1,4 +1,4 @@
-import GlobalStateContext from "@/context/globalStateContext";
+import GlobalStateContext from "@/states/globalStateContext";
 import "@/styles/globals.css";
 import { SessionProvider } from "next-auth/react";
 import { useState } from "react";

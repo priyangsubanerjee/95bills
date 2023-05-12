@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "pages/api/auth/[...nextauth]";
 import Sidenav from "@/components/Sidenav";
-import GlobalStateContext from "@/context/globalStateContext";
+import GlobalStateContext from "@/states/globalStateContext";
 import { AnimatePresence, motion } from "framer-motion";
 
 export async function getServerSideProps(context) {
