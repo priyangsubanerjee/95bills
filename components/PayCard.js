@@ -95,13 +95,13 @@ function PayCard() {
                 19th July 2022
               </div>
             </div>
-            <div className="flex items-center mt-5 bg-yellow-50 h-12 px-2 rounded-md">
+            <div className="flex items-center mt-5 bg-yellow-50 overflow-hidden h-12 rounded-md">
               <div className="h-3 w-3 text-sm rounded-full bg-yellow-500 ml-4"></div>
-              <span className="text-sm font-poppins font-semibold text-yellow-500 ml-2">
-                Due
+              <span className="text-sm font-poppins font-semibold text-yellow-500 ml-3">
+                Payment due
               </span>
 
-              <button className="text-sm flex items-center space-x-2 ml-2 h-8 rounded">
+              <button className="text-sm px-5 flex items-center ml-auto space-x-2 h-8 rounded">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -113,14 +113,32 @@ function PayCard() {
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    d="M21.75 9v.906a2.25 2.25 0 01-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 001.183 1.981l6.478 3.488m8.839 2.51l-4.66-2.51m0 0l-1.023-.55a2.25 2.25 0 00-2.134 0l-1.022.55m0 0l-4.661 2.51m16.5 1.615a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V8.844a2.25 2.25 0 011.183-1.98l7.5-4.04a2.25 2.25 0 012.134 0l7.5 4.04a2.25 2.25 0 011.183 1.98V19.5z"
+                    d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
-                <span>Remind</span>
               </button>
-              <button className="bg-teal-600 text-sm ml-auto text-white h-8 px-4 rounded font-poppins">
+              <button className="text-sm text-slate-900 h-full px-6 ">
                 Mark as paid
               </button>
+            </div>
+
+            <div className="mt-7 font-poppins">
+              <div className="flex text-slate-700 text-xl font-semibold">
+                ₹23459
+              </div>
+
+              <div className="mt-5 text-sm border-t pt-6 space-y-6 font-sans">
+                <div className="grid grid-cols-3 text-slate-700">
+                  <span>Account modal</span>
+                  <span className="text-right">2</span>
+                  <span className="text-right">800</span>
+                </div>
+                <div className="grid grid-cols-3 text-slate-700">
+                  <span>Account modal</span>
+                  <span className="text-right">2</span>
+                  <span className="text-right">800</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
