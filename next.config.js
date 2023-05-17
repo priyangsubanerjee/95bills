@@ -6,6 +6,6 @@ const withPWA = require("next-pwa")({
 
 module.exports = withPWA({
   experimental: {
-    appDir: true, // <---- Comment and Uncomment this
+    //appDir: true, // <---- Comment and Uncomment this
   },
 });
