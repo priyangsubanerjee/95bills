@@ -98,7 +98,7 @@ function Sidenav() {
         </p>
         <button
           onClick={() => signOut()}
-          className="text-white font-medium text-xs bg-slate-500 hover:bg-slate-600 w-fit px-4 py-2 rounded mt-6"
+          className="font-medium text-xs border border-slate-800 text-slate-700 hover:text-white hover:bg-slate-600 w-full px-4 py-2 rounded mt-6"
         >
           Logout
         </button>
