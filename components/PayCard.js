@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 function PayCard() {
   const [detailedViewOpen, setDetailedViewOpen] = useState(false);
-  const [changeStatus, setChangeStatus] = useState(true);
+  const [changeStatus, setChangeStatus] = useState(false);
   // close detailed view on escape key press
   useEffect(() => {
     const handleEsc = (event) => {
@@ -164,6 +164,7 @@ function PayCard() {
               </div>
 
               <button
+                key={"done"}
                 onClick={() => setDetailedViewOpen(false)}
                 className="p-3 rounded-md font-poppins font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 w-full mt-10 mb-4 lg:mb-0 lg:text-sm"
               >
@@ -195,6 +196,7 @@ function PayCard() {
               </div>
               <div className="p-5">
                 <button
+                  key={"cancel"}
                   onClick={() => setChangeStatus(false)}
                   className="p-3 rounded-md font-poppins font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 w-full mb-4 lg:mb-0 lg:text-sm"
                 >
