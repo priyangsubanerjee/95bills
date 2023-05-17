@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 
 function PayCard() {
   const [detailedViewOpen, setDetailedViewOpen] = useState(false);
+  const [changeStatus, setChangeStatus] = useState(true);
   // close detailed view on escape key press
   useEffect(() => {
     const handleEsc = (event) => {
@@ -22,6 +23,8 @@ function PayCard() {
     const handleClickOutside = (event) => {
       if (event.target.classList.contains("card")) {
         setDetailedViewOpen(false);
+      } else if (event.target.classList.contains("status-card")) {
+        setChangeStatus(false);
       }
     };
     window.addEventListener("click", handleClickOutside);
@@ -55,21 +58,6 @@ function PayCard() {
         </div>
         <div className="mt-3 flex items-center justify-between">
           <button className="flex items-center text-xs space-x-2 text-slate-500">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-              class="w-4 h-4"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-              />
-            </svg>
-
             <span>View expanded</span>
           </button>
           <div className="flex justify-center items-center text-slate-700 text-base font-semibold">
@@ -123,7 +111,7 @@ function PayCard() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 h-full w-full bg-black/70 flex items-end lg:items-center justify-center card"
+            className="fixed inset-0 h-full w-full bg-black/70 flex items-end lg:items-center justify-center card z-10"
           >
             <div className="h-fit max-h-screen overflow-y-auto lg:w-[600px] w-full bg-white p-5 lg:p-7 lg:rounded-md">
               <div className="flex items-center justify-between">
@@ -141,29 +129,23 @@ function PayCard() {
                 <span className="text-sm font-poppins font-medium text-yellow-500 ml-3">
                   Payment due
                 </span>
-
-                <button className="text-sm px-5 flex items-center ml-auto space-x-2 h-8 rounded">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-5 h-5"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </button>
-                <button className="text-sm text-slate-900 h-full px-6 ">
-                  Mark as paid
+                <button
+                  onClick={() => {
+                    setChangeStatus(true);
+                    console.log(changeStatus);
+                  }}
+                  className="text-sm text-slate-900 px-3 py-2 rounded ml-auto"
+                >
+                  Change status
                 </button>
               </div>
               <div className="mt-7 font-poppins">
-                <div className="flex text-slate-700 text-xl font-semibold">
+                <div className="text-xs font-poppins space-y-2 text-slate-600">
+                  <p className="font-medium text-slate-700">Craing Bernard</p>
+                  <p>24th Street, 2nd Avenue, New York</p>
+                  <p>craig@gmail.com</p>
+                </div>
+                <div className="text-slate-700 text-xl font-semibold mt-7 text-right">
                   ₹23459
                 </div>
 
@@ -187,6 +169,38 @@ function PayCard() {
               >
                 Done
               </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {changeStatus && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 h-full w-full bg-black/70 flex items-end lg:items-center justify-center status-card z-20"
+          >
+            <div className="h-fit max-h-screen overflow-y-auto lg:w-[600px] w-full bg-white lg:rounded-md">
+              <div className="text-slate-700">
+                <div className="space-x-3 py-5 px-5 text-center text-xs font-semibold text-slate-500">
+                  Choose status
+                </div>
+                <div className="space-x-3 py-5 px-5 text-center border-t">
+                  Paid on time
+                </div>
+                <div className="space-x-3 py-5 px-5 text-center border-t">
+                  Due
+                </div>
+              </div>
+              <div className="p-5">
+                <button
+                  onClick={() => setChangeStatus(false)}
+                  className="p-3 rounded-md font-poppins font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 w-full mb-4 lg:mb-0 lg:text-sm"
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
           </motion.div>
         )}
