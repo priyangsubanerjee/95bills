@@ -191,6 +191,9 @@ function PayCard() {
                   Paid on time
                 </div>
                 <div className="space-x-3 py-5 px-5 text-center border-t">
+                  Paid late
+                </div>
+                <div className="space-x-3 py-5 px-5 text-center border-t">
                   Due
                 </div>
               </div>
