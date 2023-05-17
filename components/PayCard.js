@@ -166,7 +166,7 @@ function PayCard() {
               <button
                 key={"done"}
                 onClick={() => setDetailedViewOpen(false)}
-                className="p-3 rounded-md font-poppins font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 w-full mt-10 mb-4 lg:mb-0 lg:text-sm"
+                className="p-4 text-sm rounded-md font-poppins font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 w-full mt-10 mb-4 lg:mb-0 lg:text-sm"
               >
                 Done
               </button>
@@ -183,7 +183,7 @@ function PayCard() {
             className="fixed inset-0 h-full w-full bg-black/70 flex items-end lg:items-center justify-center status-card z-20"
           >
             <div className="h-fit max-h-screen overflow-y-auto lg:w-[600px] w-full bg-white lg:rounded-md">
-              <div className="text-slate-700">
+              <div className="text-slate-700 text-sm">
                 <div className="space-x-3 py-5 px-5 text-center text-xs font-semibold text-slate-500">
                   Choose status
                 </div>
@@ -201,7 +201,7 @@ function PayCard() {
                 <button
                   key={"cancel"}
                   onClick={() => setChangeStatus(false)}
-                  className="p-3 rounded-md font-poppins font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 w-full mb-4 lg:mb-0 lg:text-sm"
+                  className="p-4 text-sm rounded-md font-poppins font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 w-full mb-4 lg:mb-0 lg:text-sm"
                 >
                   Cancel
                 </button>
