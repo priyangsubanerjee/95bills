@@ -182,7 +182,7 @@ function PayCard() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 h-full w-full bg-black/70 flex items-end lg:items-center justify-center status-card z-20"
           >
-            <div className="h-fit max-h-screen overflow-y-auto lg:w-[600px] w-full bg-white lg:rounded-md">
+            <div className="h-fit max-h-screen overflow-y-auto lg:w-[450px] w-full bg-white lg:rounded-md">
               <div className="text-slate-700 text-sm">
                 <div className="space-x-3 py-5 px-5 text-center text-xs font-semibold text-slate-500">
                   Choose status
