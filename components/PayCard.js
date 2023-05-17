@@ -47,7 +47,7 @@ function PayCard() {
           </div>
         </div>
         <div className="mt-3 flex items-center justify-between">
-          <div className="text-slate-600 text-sm">Aditya Kumar Jha</div>
+          <div className="text-slate-600 text-sm">Craig Bernard</div>
           <div className="flex font-medium items-center text-yellow-500 justify-center space-x-3 p-3">
             <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
             <span className="text-sm">Due</span>
@@ -88,7 +88,7 @@ function PayCard() {
           19th July 2022
         </div>
         <div className="flex justify-center items-center text-slate-600 text-sm">
-          Aditya Kumar Jha
+          Craig Bernard
         </div>
         <div className="flex justify-center items-center text-slate-700 text-base font-semibold">
           ₹23459
