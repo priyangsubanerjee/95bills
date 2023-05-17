@@ -183,7 +183,7 @@ function PayCard() {
 
               <button
                 onClick={() => setDetailedViewOpen(false)}
-                className="p-3 rounded-md font-poppins font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 w-full mt-10 mb-4 lg:text-sm"
+                className="p-3 rounded-md font-poppins font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 w-full mt-10 mb-4 lg:mb-0 lg:text-sm"
               >
                 Done
               </button>
