@@ -1,8 +1,35 @@
 import { AnimatePresence, motion } from "framer-motion";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function PayCard() {
   const [detailedViewOpen, setDetailedViewOpen] = useState(false);
+  // close detailed view on escape key press
+  useEffect(() => {
+    const handleEsc = (event) => {
+      if (event.keyCode === 27) {
+        setDetailedViewOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }, []);
+
+  // close when clicked outside
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (event.target.classList.contains("card")) {
+        setDetailedViewOpen(false);
+      }
+    };
+    window.addEventListener("click", handleClickOutside);
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div>
       <div
@@ -95,9 +122,9 @@ function PayCard() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 h-full w-full bg-black/70 flex items-end lg:items-center justify-center"
+            className="fixed inset-0 h-full w-full bg-black/70 flex items-end lg:items-center justify-center card"
           >
-            <div className="h-fit max-h-screen overflow-y-auto lg:w-[600px] w-full bg-white p-5">
+            <div className="h-fit max-h-screen overflow-y-auto lg:w-[600px] w-full bg-white p-5 lg:p-7 lg:rounded-md">
               <div className="flex items-center justify-between">
                 <div>
                   <span className="font-semibold text-slate-700 text-sm">
@@ -110,7 +137,7 @@ function PayCard() {
               </div>
               <div className="flex items-center mt-5 bg-yellow-50 overflow-hidden h-12 rounded-md">
                 <div className="h-3 w-3 text-sm rounded-full bg-yellow-500 ml-4"></div>
-                <span className="text-sm font-poppins font-semibold text-yellow-500 ml-3">
+                <span className="text-sm font-poppins font-medium text-yellow-500 ml-3">
                   Payment due
                 </span>
 
@@ -155,7 +182,7 @@ function PayCard() {
 
               <button
                 onClick={() => setDetailedViewOpen(false)}
-                className="p-3 rounded-md font-poppins font-medium text-slate-700 bg-slate-100 hover:bg-slate-200  w-full mt-10"
+                className="p-3 rounded-md font-poppins font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 w-full mt-10 lg:text-sm"
               >
                 Done
               </button>
