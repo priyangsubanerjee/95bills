@@ -187,13 +187,13 @@ function PayCard() {
                 <div className="space-x-3 py-5 px-5 text-center text-xs font-semibold text-slate-500">
                   Choose status
                 </div>
-                <div className="space-x-3 py-5 px-5 text-center border-t">
+                <div className="space-x-3 py-5 px-5 text-blue-600 text-center border-t">
                   Paid on time
                 </div>
-                <div className="space-x-3 py-5 px-5 text-center border-t">
+                <div className="space-x-3 py-5 px-5 text-blue-600 text-center border-t">
                   Paid late
                 </div>
-                <div className="space-x-3 py-5 px-5 text-center border-t">
+                <div className="space-x-3 py-5 px-5 text-blue-600 text-center border-t">
                   Due
                 </div>
               </div>
