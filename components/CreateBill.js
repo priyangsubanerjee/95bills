@@ -42,7 +42,7 @@ function CreateBill() {
         exit={{ opacity: 0 }}
         className="fixed inset-0 h-full w-full bg-black/70 flex items-end lg:items-center justify-center card z-10"
       >
-        <div className="h-fit max-h-screen overflow-y-auto lg:w-[600px] w-full bg-white p-5 lg:p-7 lg:rounded-md">
+        <div className="h-[70%] max-h-screen overflow-y-auto lg:w-[600px] w-full bg-white p-5 lg:p-7 lg:rounded-md">
           <div className="flex items-center justify-between">
             <div></div>
             <div className="flex items-center justify-center text-slate-600 text-xs">
@@ -112,6 +112,7 @@ function CreateBill() {
 
           <button
             key={"done"}
+            onClick={() => setCreateBillOpen(false)}
             className="p-4 text-sm rounded-md font-poppins font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 w-full mt-10 mb-4 lg:mb-0 lg:text-sm"
           >
             Done
