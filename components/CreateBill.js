@@ -85,7 +85,7 @@ function CreateBill() {
                   />
                 </svg>
               </button>
-              <button className="font-medium text-blue-500 text-sm">
+              <button className="font-medium text-blue-500 text-xs">
                 Add Client
               </button>
             </div>
@@ -93,7 +93,7 @@ function CreateBill() {
 
             <div className="mt-5 text-sm border-t pt-6 space-y-6 font-sans">
               <div className="flex items-center justify-end">
-                <button className="font-medium text-blue-500">
+                <button className="font-medium text-blue-500 text-xs">
                   Add Product
                 </button>
               </div>
