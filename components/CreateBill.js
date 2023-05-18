@@ -276,7 +276,7 @@ function CreateBill() {
                   </label>
                   <input
                     type="text"
-                    className="bg-slate-50 rounded-md px-4 py-3 w-full outline-none text-slate-700"
+                    className="bg-slate-50 border rounded-md px-4 py-3 w-full outline-none text-slate-700"
                     name=""
                     id=""
                     placeholder="Css snippet"
@@ -289,7 +289,7 @@ function CreateBill() {
                   >
                     Price per unit
                   </label>
-                  <div className="flex items-center bg-slate-50 rounded-md px-4">
+                  <div className="flex items-center bg-slate-50 border rounded-md px-4">
                     <span>₹</span>
                     <input
                       type="phone"
@@ -307,13 +307,44 @@ function CreateBill() {
                   >
                     Quantity
                   </label>
-                  <input
-                    type="phone"
-                    className="bg-slate-50 rounded-md px-4 py-3 w-full outline-none text-slate-700"
-                    name=""
-                    id=""
-                    placeholder="2"
-                  />
+                  <div className="flex items-center h-12">
+                    <input
+                      type="phone"
+                      className="bg-slate-50 border rounded-md px-4 h-full w-20 outline-none text-slate-700"
+                      name=""
+                      id=""
+                      value={0}
+                      placeholder="0"
+                    />
+                    <button className="flex items-center justify-center bg-slate-50 border text-slate-800 rounded-md h-full px-4 ml-5">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        class="w-4 h-4"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </button>
+                    <button className="flex items-center justify-center bg-slate-50 border text-slate-700 rounded-md h-full px-4 ml-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        class="w-4 h-4"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M3.75 12a.75.75 0 01.75-.75h15a.75.75 0 010 1.5h-15a.75.75 0 01-.75-.75z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               </div>
               <div className="p-5">
