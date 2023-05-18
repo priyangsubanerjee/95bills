@@ -67,7 +67,7 @@ function CreateBill() {
             <div className="flex items-center justify-between">
               <button
                 onClick={() => setChooseClient(true)}
-                className="font-medium text-slate-700 flex items-center space-x-3"
+                className="font-medium text-slate-700 flex items-center space-x-3 text-sm"
               >
                 <span>Select client</span>
                 <svg
