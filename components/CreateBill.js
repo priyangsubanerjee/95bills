@@ -292,7 +292,7 @@ function CreateBill() {
                   <div className="flex items-center border rounded-md px-4">
                     <span>₹</span>
                     <input
-                      type="phone"
+                      type="tel"
                       className="px-3 bg-transparent py-3 w-full outline-none text-slate-700"
                       name=""
                       id=""
@@ -309,7 +309,7 @@ function CreateBill() {
                   </label>
                   <div className="flex items-center h-12">
                     <input
-                      type="phone"
+                      type="tel"
                       className="border rounded-md px-4 h-full w-20 outline-none text-slate-700"
                       name=""
                       id=""
