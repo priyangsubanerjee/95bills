@@ -63,7 +63,7 @@ function Dashboard() {
 
       <div className="w-full h-full overflow-y-auto">
         <div className="lg:p-20 p-6">
-          <div className="flex items-center space-x-4 lg:space-x-0">
+          <div className="flex items-center">
             <button className="lg:hidden" onClick={() => setSidenavOpen(true)}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -80,12 +80,26 @@ function Dashboard() {
                 />
               </svg>
             </button>
-            <h1 className="w-fit text-2xl lg:text-4xl text-slate-700 font-bold font-poppins">
+            <h1 className="w-fit text-2xl lg:text-4xl text-slate-700 font-bold font-poppins ml-4 lg:ml-0">
               {router.query.tab
                 ? router.query.tab?.charAt(0).toUpperCase() +
                   router.query.tab?.slice(1)
                 : "Invoices"}
             </h1>
+
+            <div className="ml-auto font-medium text-blue-500">
+              {router.query.tab == "invoice" ? (
+                <button className="">Create</button>
+              ) : router.query.tab == "customers" ? (
+                <button className="">Add</button>
+              ) : router.query.tab == "paid" ? (
+                <button className="">Add Record</button>
+              ) : router.query.tab == "due" ? (
+                <button className="">Add</button>
+              ) : (
+                <button className="font-semibold text-blue-500">Create</button>
+              )}
+            </div>
           </div>
           <p className="text-slate-500 text-xs lg:text-sm mt-3">
             Tap on an invoice to view details.
