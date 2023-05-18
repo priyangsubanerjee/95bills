@@ -276,7 +276,7 @@ function CreateBill() {
                   </label>
                   <input
                     type="text"
-                    className="bg-slate-50 border rounded-md px-4 py-3 w-full outline-none text-slate-700"
+                    className=" border rounded-md px-4 py-3 w-full outline-none text-slate-700"
                     name=""
                     id=""
                     placeholder="Css snippet"
@@ -289,7 +289,7 @@ function CreateBill() {
                   >
                     Price per unit
                   </label>
-                  <div className="flex items-center bg-slate-50 border rounded-md px-4">
+                  <div className="flex items-center border rounded-md px-4">
                     <span>₹</span>
                     <input
                       type="phone"
@@ -310,13 +310,13 @@ function CreateBill() {
                   <div className="flex items-center h-12">
                     <input
                       type="phone"
-                      className="bg-slate-50 border rounded-md px-4 h-full w-20 outline-none text-slate-700"
+                      className="border rounded-md px-4 h-full w-20 outline-none text-slate-700"
                       name=""
                       id=""
                       value={0}
                       placeholder="0"
                     />
-                    <button className="flex items-center justify-center bg-slate-50 border text-slate-800 rounded-md h-full px-4 ml-5">
+                    <button className="flex items-center justify-center bg-slate-50 text-slate-800 rounded-md h-full px-4 ml-5">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -330,7 +330,7 @@ function CreateBill() {
                         />
                       </svg>
                     </button>
-                    <button className="flex items-center justify-center bg-slate-50 border text-slate-700 rounded-md h-full px-4 ml-2">
+                    <button className="flex items-center justify-center bg-slate-50 text-slate-700 rounded-md h-full px-4 ml-2">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -350,7 +350,7 @@ function CreateBill() {
               <div className="p-5">
                 <button
                   onClick={() => setAddProductOpen(false)}
-                  className="p-4 text-sm rounded-md font-poppins font-medium text-slate-100 bg-blue-500 hover:bg-blue-600 w-full mb-4 lg:mb-0 lg:text-sm"
+                  className="p-4 text-sm rounded-md font-poppins font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 w-full mb-4 lg:mb-0 lg:text-sm"
                 >
                   Add
                 </button>
