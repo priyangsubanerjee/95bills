@@ -253,12 +253,12 @@ function CreateBill() {
             className="fixed inset-0 h-full w-full bg-black/70 flex items-end lg:items-center justify-center add-product-card z-20"
           >
             <div className="h-fit max-h-screen overflow-y-auto lg:w-[450px] w-full bg-white lg:rounded-md relative">
-              <div className="text-slate-700 text-sm border-b">
-                <div className="space-x-3 py-5 px-5 flex items-center justify-between text-xs font-semibold text-slate-500">
-                  <span>Add product</span>
+              <div className="text-slate-700 text-sm">
+                <div className="space-x-3 pt-5 px-5 flex items-center justify-between text-xs font-semibold text-slate-500">
+                  <span className=" opacity-0">Add product</span>
                   <button
                     onClick={() => {
-                      setchooseClientOpen(false);
+                      setAddProductOpen(false);
                     }}
                     className="text-blue-500 font-medium text-sm"
                   >
