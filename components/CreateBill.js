@@ -4,8 +4,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import GlobalStateContext from "@/states/globalStateContext";
 
 function CreateBill() {
-  const [changeStatus, setChangeStatus] = useState(false);
-  const [chooseClient, setChooseClient] = useState(false);
+  const [changeStatusOpen, setchangeStatusOpen] = useState(false);
+  const [chooseClientOpen, setchooseClientOpen] = useState(false);
+  const [addProductOpen, setAddProductOpen] = useState(false);
   const { createBillOpen, setCreateBillOpen } = useContext(GlobalStateContext);
 
   useEffect(() => {
@@ -25,7 +26,11 @@ function CreateBill() {
       if (event.target.classList.contains("card")) {
         setCreateBillOpen(false);
       } else if (event.target.classList.contains("status-card")) {
-        setChangeStatus(false);
+        setchangeStatusOpen(false);
+      } else if (event.target.classList.contains("selectClient-card")) {
+        setchooseClientOpen(false);
+      } else if (event.target.classList.contains("add-product-card")) {
+        setAddProductOpen(false);
       }
     };
     window.addEventListener("click", handleClickOutside);
@@ -42,7 +47,7 @@ function CreateBill() {
         exit={{ opacity: 0 }}
         className="fixed inset-0 h-full w-full bg-black/70 flex items-end lg:items-center justify-center card z-10"
       >
-        <div className="h-[70%] max-h-screen overflow-y-auto lg:w-[600px] w-full bg-white p-5 lg:p-7 lg:rounded-md">
+        <div className="h-fit max-h-screen overflow-y-auto lg:w-[600px] lg:h-fit w-full bg-white p-5 lg:p-7 lg:rounded-md">
           <div className="flex items-center justify-between">
             <div></div>
             <div className="flex items-center justify-center text-slate-600 text-xs">
@@ -56,7 +61,7 @@ function CreateBill() {
             </span>
             <button
               onClick={() => {
-                setChangeStatus(true);
+                setchangeStatusOpen(true);
               }}
               className="text-sm text-slate-900 px-3 py-2 rounded ml-auto"
             >
@@ -66,7 +71,7 @@ function CreateBill() {
           <div className="mt-7 font-poppins">
             <div className="flex items-center justify-between">
               <button
-                onClick={() => setChooseClient(true)}
+                onClick={() => setchooseClientOpen(true)}
                 className="font-medium text-slate-700 flex items-center space-x-3 text-sm"
               >
                 <span>Select client</span>
@@ -93,7 +98,10 @@ function CreateBill() {
 
             <div className="mt-5 text-sm border-t pt-6 space-y-6 font-sans">
               <div className="flex items-center justify-end">
-                <button className="font-medium text-blue-500 text-xs">
+                <button
+                  onClick={() => setAddProductOpen(true)}
+                  className="font-medium text-blue-500 text-xs"
+                >
                   Add Product
                 </button>
               </div>
@@ -120,7 +128,7 @@ function CreateBill() {
         </div>
       </motion.div>
       <AnimatePresence>
-        {changeStatus && (
+        {changeStatusOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -145,7 +153,7 @@ function CreateBill() {
               <div className="p-5">
                 <button
                   key={"cancel"}
-                  onClick={() => setChangeStatus(false)}
+                  onClick={() => setchangeStatusOpen(false)}
                   className="p-4 text-sm rounded-md font-poppins font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 w-full mb-4 lg:mb-0 lg:text-sm"
                 >
                   Cancel
@@ -156,12 +164,12 @@ function CreateBill() {
         )}
       </AnimatePresence>
       <AnimatePresence>
-        {chooseClient && (
+        {chooseClientOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 h-full w-full bg-black/70 flex items-end lg:items-center justify-center status-card z-20"
+            className="fixed inset-0 h-full w-full bg-black/70 flex items-end lg:items-center justify-center selectClient-card z-20"
           >
             <div className="h-[70%] overflow-y-auto lg:w-[450px] w-full bg-white lg:rounded-md relative">
               <div className="text-slate-700 text-sm sticky top-0 inset-x-0 bg-white border-b">
@@ -169,7 +177,7 @@ function CreateBill() {
                   <span>Select client</span>
                   <button
                     onClick={() => {
-                      setChooseClient(false);
+                      setchooseClientOpen(false);
                     }}
                     className="text-blue-500 font-medium text-sm"
                   >
@@ -224,11 +232,96 @@ function CreateBill() {
               </div>
               <div className="p-5 hidden">
                 <button
-                  key={"cancel"}
-                  onClick={() => setChooseClient(false)}
+                  key={"cancel-choose-client"}
+                  onClick={() => setchooseClientOpen(false)}
                   className="p-4 text-sm rounded-md font-poppins font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 w-full mb-4 lg:mb-0 lg:text-sm"
                 >
                   Cancel
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {addProductOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 h-full w-full bg-black/70 flex items-end lg:items-center justify-center add-product-card z-20"
+          >
+            <div className="h-fit max-h-screen overflow-y-auto lg:w-[450px] w-full bg-white lg:rounded-md relative">
+              <div className="text-slate-700 text-sm border-b">
+                <div className="space-x-3 py-5 px-5 flex items-center justify-between text-xs font-semibold text-slate-500">
+                  <span>Add product</span>
+                  <button
+                    onClick={() => {
+                      setchooseClientOpen(false);
+                    }}
+                    className="text-blue-500 font-medium text-sm"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+              <div className="p-5">
+                <div className="space-y-2">
+                  <label
+                    className="block text-xs font-semibold text-slate-500 font-poppins"
+                    htmlFor=""
+                  >
+                    Product name
+                  </label>
+                  <input
+                    type="text"
+                    className="bg-slate-50 rounded-md px-4 py-3 w-full outline-none text-slate-700"
+                    name=""
+                    id=""
+                    placeholder="Css snippet"
+                  />
+                </div>
+                <div className="space-y-2 mt-5">
+                  <label
+                    className="block text-xs font-semibold text-slate-500 font-poppins"
+                    htmlFor=""
+                  >
+                    Price per unit
+                  </label>
+                  <div className="flex items-center bg-slate-50 rounded-md px-4">
+                    <span>₹</span>
+                    <input
+                      type="phone"
+                      className="px-3 bg-transparent py-3 w-full outline-none text-slate-700"
+                      name=""
+                      id=""
+                      placeholder="400"
+                    />
+                  </div>
+                </div>
+                <div className="space-y-2 mt-5">
+                  <label
+                    className="block text-xs font-semibold text-slate-500 font-poppins"
+                    htmlFor=""
+                  >
+                    Quantity
+                  </label>
+                  <input
+                    type="phone"
+                    className="bg-slate-50 rounded-md px-4 py-3 w-full outline-none text-slate-700"
+                    name=""
+                    id=""
+                    placeholder="2"
+                  />
+                </div>
+              </div>
+              <div className="p-5">
+                <button
+                  onClick={() => setAddProductOpen(false)}
+                  className="p-4 text-sm rounded-md font-poppins font-medium text-slate-100 bg-blue-500 hover:bg-blue-600 w-full mb-4 lg:mb-0 lg:text-sm"
+                >
+                  Add
                 </button>
               </div>
             </div>
