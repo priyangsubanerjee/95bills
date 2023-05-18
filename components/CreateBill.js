@@ -166,7 +166,7 @@ function CreateBill() {
             <div className="h-[70%] overflow-y-auto lg:w-[450px] w-full bg-white lg:rounded-md relative">
               <div className="text-slate-700 text-sm sticky top-0 inset-x-0 bg-white border-b">
                 <div className="space-x-3 pt-5 px-5 flex items-center justify-between text-xs font-semibold text-slate-500">
-                  <span>Choose client</span>
+                  <span>Select client</span>
                   <button
                     onClick={() => {
                       setChooseClient(false);
@@ -207,7 +207,18 @@ function CreateBill() {
               <div>
                 <ul>
                   {[...Array(50)].map((e, i) => {
-                    return <li key={i}>Item</li>;
+                    return (
+                      <li key={i}>
+                        <div className="text-xs font-poppins space-y-3 text-slate-600 p-5 border-b">
+                          <p className="font-medium text-slate-700">
+                            Craing Bernard
+                          </p>
+                          <p>24th Street, 2nd Avenue, New York</p>
+                          <p>craig@gmail.com</p>
+                          <p>+120 9213123</p>
+                        </div>
+                      </li>
+                    );
                   })}
                 </ul>
               </div>
