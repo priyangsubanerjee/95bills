@@ -98,6 +98,8 @@ export default function App({
       tab: "settings",
     },
   ];
+
+  const [createBillOpen, setCreateBillOpen] = useState(false);
   return (
     <GlobalStateContext.Provider
       value={{
@@ -106,6 +108,8 @@ export default function App({
         setSidenavOpen,
         tab,
         setTab,
+        createBillOpen,
+        setCreateBillOpen,
       }}
     >
       <SessionProvider session={session}>

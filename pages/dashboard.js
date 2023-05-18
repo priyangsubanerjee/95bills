@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useSession } from "next-auth/react";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "pages/api/auth/[...nextauth]";
 import Sidenav from "@/components/Sidenav";
@@ -8,6 +8,7 @@ import GlobalStateContext from "@/states/globalStateContext";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/router";
 import PayCard from "@/components/PayCard";
+import CreateBill from "@/components/CreateBill";
 
 export async function getServerSideProps(context) {
   const session = await getServerSession(context.req, context.res, authOptions);
@@ -31,7 +32,8 @@ export async function getServerSideProps(context) {
 function Dashboard() {
   const session = useSession();
   const { tab, setTab } = useContext(GlobalStateContext) || [];
-  const { sidenavOpen, setSidenavOpen } = useContext(GlobalStateContext);
+  const { sidenavOpen, setSidenavOpen, createBillOpen, setCreateBillOpen } =
+    useContext(GlobalStateContext);
   const router = useRouter();
   return (
     <div className="h-screen w-screen fixed inset-0 bg-white lg:flex overflow-hidden">
@@ -89,7 +91,9 @@ function Dashboard() {
 
             <div className="ml-auto font-medium text-blue-500">
               {router.query.tab == "invoice" ? (
-                <button className="">Create</button>
+                <button className="" onClick={() => setCreateBillOpen(true)}>
+                  Create
+                </button>
               ) : router.query.tab == "customers" ? (
                 <button className="">Add</button>
               ) : router.query.tab == "paid" ? (
@@ -97,7 +101,9 @@ function Dashboard() {
               ) : router.query.tab == "due" ? (
                 <button className="">Add</button>
               ) : (
-                <button className="font-semibold text-blue-500">Create</button>
+                <button className="" onClick={() => setCreateBillOpen(true)}>
+                  Create
+                </button>
               )}
             </div>
           </div>
@@ -121,6 +127,8 @@ function Dashboard() {
           ) : null}
         </div>
       </div>
+
+      <AnimatePresence>{createBillOpen && <CreateBill />}</AnimatePresence>
     </div>
   );
 }
