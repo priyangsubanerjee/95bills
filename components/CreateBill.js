@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import GlobalStateContext from "@/states/globalStateContext";
 
 function CreateBill() {
+  const dateref = useRef(null);
   const [changeStatusOpen, setchangeStatusOpen] = useState(false);
   const [chooseClientOpen, setchooseClientOpen] = useState(false);
   const [addProductOpen, setAddProductOpen] = useState(false);
@@ -64,6 +65,14 @@ function CreateBill() {
     };
   }, []);
 
+  useEffect(() => {
+    if (dateref.current) {
+      // set the initial state
+
+      dateref.current.valueAsDate = new Date();
+    }
+  }, [dateref]);
+
   return (
     <div>
       <motion.div
@@ -119,15 +128,14 @@ function CreateBill() {
                 Add Client
               </button>
             </div>
-            <div className="text-sm font-poppins space-y-2 text-slate-600"></div>
-            <div className="font-normal font-sans mt-10">
+            <div className="space-y-2 mt-10 font-sans">
               <label
-                className="block text-xs font-semibold text-slate-500 font-poppins"
+                className="block text-xs font-semibold text-slate-600"
                 htmlFor=""
               >
-                Choose due date
+                Due date
               </label>
-              <div className="flex items-center border rounded-md px-4 mt-2">
+              <div className="flex items-center border rounded-md px-4">
                 <span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -146,9 +154,11 @@ function CreateBill() {
                 </span>
                 <input
                   type="date"
-                  className="px-3 text-left bg-transparent py-3 w-52 h-10 bg-emerald-500 outline-none text-slate-700"
+                  className="px-3 bg-transparent py-3 outline-none text-slate-700"
                   name=""
                   id=""
+                  ref={dateref}
+                  placeholder="400"
                 />
               </div>
             </div>
