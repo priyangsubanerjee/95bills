@@ -57,7 +57,7 @@ function AddClient() {
 
               <input
                 type="text"
-                placeholder="John Doe"
+                placeholder="Full name"
                 className="ml-3 w-full outline-none"
                 name=""
                 id=""
@@ -83,7 +83,7 @@ function AddClient() {
 
               <input
                 type="email"
-                placeholder="abc@gmail.com"
+                placeholder="Email address"
                 className="ml-3 w-full outline-none"
                 name=""
                 id=""
@@ -109,7 +109,7 @@ function AddClient() {
 
               <input
                 type="tel"
-                placeholder="0998661322"
+                placeholder="Contact number"
                 className="ml-3 w-full outline-none"
                 name=""
                 id=""
