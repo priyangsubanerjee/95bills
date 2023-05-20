@@ -61,7 +61,7 @@ export default function App({
       tab: "due",
     },
     {
-      name: "Customers",
+      name: "Clients",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +77,7 @@ export default function App({
           <path d="M5.082 14.254a8.287 8.287 0 00-1.308 5.135 9.687 9.687 0 01-1.764-.44l-.115-.04a.563.563 0 01-.373-.487l-.01-.121a3.75 3.75 0 013.57-4.047zM20.226 19.389a8.287 8.287 0 00-1.308-5.135 3.75 3.75 0 013.57 4.047l-.01.121a.563.563 0 01-.373.486l-.115.04c-.567.2-1.156.349-1.764.441z" />
         </svg>
       ),
-      tab: "customers",
+      tab: "clients",
     },
     {
       name: "Settings",
@@ -100,6 +100,7 @@ export default function App({
   ];
 
   const [createBillOpen, setCreateBillOpen] = useState(false);
+  const [addClientOpen, setAddClientOpen] = useState(false);
   return (
     <GlobalStateContext.Provider
       value={{
@@ -110,6 +111,8 @@ export default function App({
         setTab,
         createBillOpen,
         setCreateBillOpen,
+        addClientOpen,
+        setAddClientOpen,
       }}
     >
       <SessionProvider session={session}>

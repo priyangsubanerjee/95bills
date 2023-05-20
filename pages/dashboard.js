@@ -9,6 +9,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/router";
 import PayCard from "@/components/PayCard";
 import CreateBill from "@/components/CreateBill";
+import AddClient from "@/components/AddClient";
 
 export async function getServerSideProps(context) {
   const session = await getServerSession(context.req, context.res, authOptions);
@@ -32,8 +33,14 @@ export async function getServerSideProps(context) {
 function Dashboard() {
   const session = useSession();
   const { tab, setTab } = useContext(GlobalStateContext) || [];
-  const { sidenavOpen, setSidenavOpen, createBillOpen, setCreateBillOpen } =
-    useContext(GlobalStateContext);
+  const {
+    sidenavOpen,
+    setSidenavOpen,
+    createBillOpen,
+    setCreateBillOpen,
+    addClientOpen,
+    setAddClientOpen,
+  } = useContext(GlobalStateContext);
   const router = useRouter();
   return (
     <div className="h-screen w-screen fixed inset-0 bg-white lg:flex overflow-hidden">
@@ -94,8 +101,10 @@ function Dashboard() {
                 <button className="" onClick={() => setCreateBillOpen(true)}>
                   Create
                 </button>
-              ) : router.query.tab == "customers" ? (
-                <button className="">Add</button>
+              ) : router.query.tab == "clients" ? (
+                <button onClick={() => setAddClientOpen(true)} className="">
+                  Add
+                </button>
               ) : router.query.tab == "paid" ? (
                 <button className="">Add Record</button>
               ) : router.query.tab == "due" ? (
@@ -129,6 +138,7 @@ function Dashboard() {
       </div>
 
       <AnimatePresence>{createBillOpen && <CreateBill />}</AnimatePresence>
+      <AnimatePresence>{addClientOpen && <AddClient />}</AnimatePresence>
     </div>
   );
 }

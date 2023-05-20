@@ -26,7 +26,7 @@ function Sidenav() {
       case "due":
         setTab(2);
         break;
-      case "customers":
+      case "clients":
         setTab(3);
         break;
       case "settings":
