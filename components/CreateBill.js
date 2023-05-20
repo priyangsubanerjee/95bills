@@ -3,12 +3,14 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import GlobalStateContext from "@/states/globalStateContext";
 
-function CreateBill() {
+function CreateBill({}) {
   const dateref = useRef(null);
   const [changeStatusOpen, setchangeStatusOpen] = useState(false);
   const [chooseClientOpen, setchooseClientOpen] = useState(false);
   const [addProductOpen, setAddProductOpen] = useState(false);
   const { createBillOpen, setCreateBillOpen, setAddClientOpen } =
+    useContext(GlobalStateContext);
+  const { createDefaultStatus, setCreateDefaultStatus } =
     useContext(GlobalStateContext);
 
   const [productProps, setproductProps] = useState({
@@ -23,8 +25,8 @@ function CreateBill() {
       id: "",
     },
     products: [],
-    status: "due",
-    total: 0,
+    status: createDefaultStatus,
+    totalAmount: 0,
   });
 
   const resetProductProps = () => {
@@ -68,14 +70,22 @@ function CreateBill() {
 
   useEffect(() => {
     if (dateref.current) {
-      // set the initial state
-
       dateref.current.valueAsDate = new Date();
     }
   }, [dateref]);
 
+  useEffect(() => {
+    setbillProps({
+      ...billProps,
+      status: createDefaultStatus,
+    });
+    setchangeStatusOpen(false);
+  }, [createDefaultStatus]);
+
   return (
     <div>
+      {/* Create bill */}
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -89,10 +99,26 @@ function CreateBill() {
               19th July 2022
             </div>
           </div>
-          <div className="flex items-center mt-5 bg-yellow-50 overflow-hidden h-12 rounded-md">
-            <div className="h-3 w-3 text-sm rounded-full bg-yellow-500 ml-4"></div>
-            <span className="text-sm font-poppins font-medium text-yellow-500 ml-3">
-              Payment due
+          <div
+            className={`flex items-center mt-5 ${
+              billProps.status == "due"
+                ? "bg-yellow-50 text-yellow-500 "
+                : "bg-teal-50 text-green-500 "
+            } overflow-hidden h-12 rounded-md`}
+          >
+            <div
+              className={`h-3 w-3  ml-4 text-sm rounded-full ${
+                billProps.status == "due"
+                  ? "bg-yellow-500 text-yellow-500"
+                  : "bg-teal-500 text-green-500"
+              }`}
+            ></div>
+            <span className="text-sm font-poppins font-medium ml-3">
+              {billProps.status == "due"
+                ? "Due"
+                : billProps.status == "paid_late"
+                ? "Paid late"
+                : "Paid on time"}
             </span>
             <button
               onClick={() => {
@@ -141,16 +167,34 @@ function CreateBill() {
                   Add Product
                 </button>
               </div>
-              <div className="grid grid-cols-3 text-slate-700">
-                <span>Account modal</span>
-                <span className="text-right">2</span>
-                <span className="text-right">800</span>
-              </div>
-              <div className="grid grid-cols-3 text-slate-700">
-                <span>Account modal</span>
-                <span className="text-right">2</span>
-                <span className="text-right">800</span>
-              </div>
+              {billProps.products.map((product, index) => {
+                return (
+                  <div key={index} className="grid grid-cols-6 text-slate-700">
+                    <span className="col-span-3">{product.name}</span>
+                    <span className="text-center">{product.qty}</span>
+                    <span className="text-right">{product.total}</span>
+                    <span className="text-right">-</span>
+                  </div>
+                );
+              })}
+            </div>
+            <div>
+              {billProps.products.length > 0 && (
+                <>
+                  <div className="flex justify-between items-center text-xl font-bold text-slate-700 border-t mt-10 pt-6">
+                    <span className="text-base text-slate-700 font-poppins">
+                      Total:
+                    </span>
+                    <span>
+                      {"₹" +
+                        billProps.products.reduce((a, b) => a + b.total, 0)}
+                    </span>
+                  </div>
+                  <div className="text-xs text-slate-500 mt-2 font-sans">
+                    The above amount is inclusive of all taxes*
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
@@ -163,6 +207,9 @@ function CreateBill() {
           </button>
         </div>
       </motion.div>
+
+      {/* Change status */}
+
       <AnimatePresence>
         {changeStatusOpen && (
           <motion.div
@@ -176,13 +223,25 @@ function CreateBill() {
                 <div className="space-x-3 py-5 px-5 text-center text-xs font-semibold text-slate-500">
                   Choose status
                 </div>
-                <div className="space-x-3 py-5 px-5 text-blue-600 text-center border-t">
+                <div
+                  onClick={() => setCreateDefaultStatus("paid_onTime")}
+                  className="space-x-3 py-5 px-5 text-blue-600 text-center border-t"
+                >
                   Paid on time
                 </div>
-                <div className="space-x-3 py-5 px-5 text-blue-600 text-center border-t">
+
+                <div
+                  onClick={() => setCreateDefaultStatus("paid_late")}
+                  className="space-x-3 py-5 px-5 text-blue-600 text-center border-t"
+                >
                   Paid late
                 </div>
-                <div className="space-x-3 py-5 px-5 text-blue-600 text-center border-t">
+                <div
+                  onClick={() => {
+                    setCreateDefaultStatus("due");
+                  }}
+                  className="space-x-3 py-5 px-5 text-blue-600 text-center border-t"
+                >
                   Due
                 </div>
               </div>
@@ -199,6 +258,9 @@ function CreateBill() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Choose client */}
+
       <AnimatePresence>
         {chooseClientOpen && (
           <motion.div
@@ -279,6 +341,9 @@ function CreateBill() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Add product */}
+
       <AnimatePresence>
         {addProductOpen && (
           <motion.div
@@ -424,7 +489,23 @@ function CreateBill() {
               </div>
               <div className="p-5">
                 <button
-                  onClick={() => setAddProductOpen(false)}
+                  onClick={() => {
+                    setbillProps({
+                      ...billProps,
+                      products: [
+                        ...billProps.products,
+                        {
+                          name: productProps.name,
+                          pricePerUnit: productProps.price_per_unit,
+                          qty: productProps.quantity,
+                          total:
+                            productProps.price_per_unit * productProps.quantity,
+                        },
+                      ],
+                    });
+                    resetProductProps();
+                    setAddProductOpen(false);
+                  }}
                   className="p-4 text-sm rounded-md font-poppins font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 w-full mb-4 lg:mb-0 lg:text-sm"
                 >
                   Add

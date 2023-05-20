@@ -33,6 +33,9 @@ export async function getServerSideProps(context) {
 function Dashboard() {
   const session = useSession();
   const { tab, setTab } = useContext(GlobalStateContext) || [];
+  const { createDefaultStatus, setCreateDefaultStatus } =
+    useContext(GlobalStateContext);
+
   const {
     sidenavOpen,
     setSidenavOpen,
@@ -69,7 +72,6 @@ function Dashboard() {
           </motion.div>
         )}
       </AnimatePresence>
-
       <div className="w-full h-full overflow-y-auto">
         <div className="lg:p-20 p-6">
           <div className="flex items-center">
@@ -97,8 +99,14 @@ function Dashboard() {
             </h1>
 
             <div className="ml-auto font-medium text-blue-500">
-              {router.query.tab == "invoice" ? (
-                <button className="" onClick={() => setCreateBillOpen(true)}>
+              {router.query.tab == "invoices" ? (
+                <button
+                  className=""
+                  onClick={() => {
+                    setCreateBillOpen(true);
+                    setCreateDefaultStatus("due");
+                  }}
+                >
                   Create
                 </button>
               ) : router.query.tab == "clients" ? (
@@ -106,11 +114,33 @@ function Dashboard() {
                   Add
                 </button>
               ) : router.query.tab == "paid" ? (
-                <button className="">Add Record</button>
+                <button
+                  onClick={() => {
+                    setCreateDefaultStatus("paid_onTime");
+                    setCreateBillOpen(true);
+                  }}
+                  className=""
+                >
+                  Add Record
+                </button>
               ) : router.query.tab == "due" ? (
-                <button className="">Add</button>
+                <button
+                  onClick={() => {
+                    setCreateBillOpen(true);
+                    setCreateDefaultStatus("due");
+                  }}
+                  className=""
+                >
+                  Add
+                </button>
               ) : (
-                <button className="" onClick={() => setCreateBillOpen(true)}>
+                <button
+                  className=""
+                  onClick={() => {
+                    setCreateBillOpen(true);
+                    setCreateDefaultStatus("due");
+                  }}
+                >
                   Create
                 </button>
               )}
@@ -136,7 +166,6 @@ function Dashboard() {
           ) : null}
         </div>
       </div>
-
       <AnimatePresence>{createBillOpen && <CreateBill />}</AnimatePresence>
       <AnimatePresence>{addClientOpen && <AddClient />}</AnimatePresence>
     </div>

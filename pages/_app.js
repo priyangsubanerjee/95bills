@@ -101,6 +101,8 @@ export default function App({
 
   const [createBillOpen, setCreateBillOpen] = useState(false);
   const [addClientOpen, setAddClientOpen] = useState(false);
+  const [createDefaultStatus, setCreateDefaultStatus] = useState("due");
+
   return (
     <GlobalStateContext.Provider
       value={{
@@ -113,6 +115,8 @@ export default function App({
         setCreateBillOpen,
         addClientOpen,
         setAddClientOpen,
+        createDefaultStatus,
+        setCreateDefaultStatus,
       }}
     >
       <SessionProvider session={session}>
