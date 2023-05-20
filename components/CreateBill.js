@@ -9,6 +9,20 @@ function CreateBill() {
   const [addProductOpen, setAddProductOpen] = useState(false);
   const { createBillOpen, setCreateBillOpen } = useContext(GlobalStateContext);
 
+  const [productProps, setproductProps] = useState({
+    name: "",
+    price_per_unit: "",
+    quantity: 0,
+  });
+
+  const resetProductProps = () => {
+    setproductProps({
+      name: "",
+      price_per_unit: "",
+      quantity: 0,
+    });
+  };
+
   useEffect(() => {
     const handleEsc = (event) => {
       if (event.keyCode === 27) {
@@ -31,6 +45,7 @@ function CreateBill() {
         setchooseClientOpen(false);
       } else if (event.target.classList.contains("add-product-card")) {
         setAddProductOpen(false);
+        resetProductProps();
       }
     };
     window.addEventListener("click", handleClickOutside);
@@ -243,7 +258,6 @@ function CreateBill() {
           </motion.div>
         )}
       </AnimatePresence>
-
       <AnimatePresence>
         {addProductOpen && (
           <motion.div
@@ -255,10 +269,11 @@ function CreateBill() {
             <div className="h-fit max-h-screen overflow-y-auto lg:w-[450px] w-full bg-white lg:rounded-md relative">
               <div className="text-slate-700 text-sm">
                 <div className="space-x-3 pt-5 px-5 flex items-center justify-between text-xs font-semibold text-slate-500">
-                  <span className=" opacity-0">Add product</span>
+                  <span className="opacity-0">Add product</span>
                   <button
                     onClick={() => {
                       setAddProductOpen(false);
+                      resetProductProps();
                     }}
                     className="text-blue-500 font-medium text-sm"
                   >
@@ -280,6 +295,13 @@ function CreateBill() {
                     name=""
                     id=""
                     placeholder="Css snippet"
+                    value={productProps.name}
+                    onChange={(e) => {
+                      setproductProps({
+                        ...productProps,
+                        name: e.target.value,
+                      });
+                    }}
                   />
                 </div>
                 <div className="space-y-2 mt-5">
@@ -296,6 +318,13 @@ function CreateBill() {
                       className="px-3 bg-transparent py-3 w-full outline-none text-slate-700"
                       name=""
                       id=""
+                      value={productProps.price_per_unit}
+                      onChange={(e) => {
+                        setproductProps({
+                          ...productProps,
+                          price_per_unit: e.target.value,
+                        });
+                      }}
                       placeholder="400"
                     />
                   </div>
@@ -313,10 +342,24 @@ function CreateBill() {
                       className="border rounded-md px-4 h-full w-20 outline-none text-slate-700"
                       name=""
                       id=""
-                      value={0}
+                      value={productProps.quantity}
+                      onChange={(e) => {
+                        setproductProps({
+                          ...productProps,
+                          quantity: e.target.value,
+                        });
+                      }}
                       placeholder="0"
                     />
-                    <button className="flex items-center justify-center bg-slate-50 text-slate-800 rounded-md h-full px-4 ml-5">
+                    <button
+                      onClick={() => {
+                        setproductProps({
+                          ...productProps,
+                          quantity: productProps.quantity + 1,
+                        });
+                      }}
+                      className="flex items-center justify-center bg-slate-50 text-slate-800 rounded-md h-full px-4 ml-5"
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -330,7 +373,18 @@ function CreateBill() {
                         />
                       </svg>
                     </button>
-                    <button className="flex items-center justify-center bg-slate-50 text-slate-700 rounded-md h-full px-4 ml-2">
+                    <button
+                      onClick={() => {
+                        setproductProps({
+                          ...productProps,
+                          quantity:
+                            productProps.quantity === 0
+                              ? 0
+                              : productProps.quantity - 1,
+                        });
+                      }}
+                      className="flex items-center justify-center bg-slate-50 text-slate-700 rounded-md h-full px-4 ml-2"
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
