@@ -146,7 +146,7 @@ function CreateBill() {
                 </span>
                 <input
                   type="date"
-                  className="px-3 bg-transparent py-3 w-52 h-10 bg-emerald-50 outline-none text-slate-700"
+                  className="px-3 text-left bg-transparent py-3 w-52 h-10 bg-emerald-500 outline-none text-slate-700"
                   name=""
                   id=""
                 />
