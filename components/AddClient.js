@@ -39,33 +39,78 @@ function AddClient() {
         </div>
         <div className="p-5 space-y-4">
           <div className="space-y-2">
-            <div className="h-12 w-full border focus-within:border-blue-500 rounded-md flex items-center">
+            <div className="h-12 px-4 w-full border focus-within:border-blue-500 rounded-md flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-5 h-5 text-slate-600"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                />
+              </svg>
+
               <input
                 type="text"
                 placeholder="John Doe"
-                className="px-4 w-full outline-none"
+                className="ml-3 w-full outline-none"
                 name=""
                 id=""
               />
             </div>
           </div>
           <div className="space-y-2">
-            <div className="h-12 w-full border focus-within:border-blue-500 rounded-md flex items-center">
+            <div className="h-12 px-4 w-full border focus-within:border-blue-500 rounded-md flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-5 h-5 text-slate-600"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21.75 9v.906a2.25 2.25 0 01-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 001.183 1.981l6.478 3.488m8.839 2.51l-4.66-2.51m0 0l-1.023-.55a2.25 2.25 0 00-2.134 0l-1.022.55m0 0l-4.661 2.51m16.5 1.615a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V8.844a2.25 2.25 0 011.183-1.98l7.5-4.04a2.25 2.25 0 012.134 0l7.5 4.04a2.25 2.25 0 011.183 1.98V19.5z"
+                />
+              </svg>
+
               <input
                 type="email"
                 placeholder="abc@gmail.com"
-                className="px-4 w-full outline-none"
+                className="ml-3 w-full outline-none"
                 name=""
                 id=""
               />
             </div>
           </div>
           <div className="space-y-2">
-            <div className="h-12 w-full border focus-within:border-blue-500 rounded-md flex items-center">
+            <div className="h-12 px-4 w-full border focus-within:border-blue-500 rounded-md flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-5 h-5 text-slate-600"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
+                />
+              </svg>
+
               <input
                 type="tel"
                 placeholder="0998661322"
-                className="px-4 w-full outline-none"
+                className="ml-3 w-full outline-none"
                 name=""
                 id=""
               />

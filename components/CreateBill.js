@@ -104,7 +104,7 @@ function CreateBill() {
             </button>
           </div>
           <div className="mt-7 font-poppins">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between border-b pb-5">
               <button
                 onClick={() => setchooseClientOpen(true)}
                 className="font-medium text-slate-700 flex items-center space-x-3 text-sm"
@@ -131,40 +131,6 @@ function CreateBill() {
               >
                 Add Client
               </button>
-            </div>
-            <div className="space-y-2 mt-10 font-sans">
-              <label
-                className="block text-xs font-semibold text-slate-600"
-                htmlFor=""
-              >
-                Due date
-              </label>
-              <div className="flex items-center border rounded-md px-4">
-                <span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-5 h-5"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"
-                    />
-                  </svg>
-                </span>
-                <input
-                  type="date"
-                  className="px-3 bg-transparent py-3 outline-none text-slate-700"
-                  name=""
-                  id=""
-                  ref={dateref}
-                  placeholder="400"
-                />
-              </div>
             </div>
             <div className="mt-7 text-sm space-y-6 font-sans">
               <div className="flex items-center justify-end">
