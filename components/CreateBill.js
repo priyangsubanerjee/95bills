@@ -15,6 +15,16 @@ function CreateBill() {
     quantity: 0,
   });
 
+  const [billProps, setbillProps] = useState({
+    id: Math.floor(Math.random() * 1000000000),
+    client: {
+      id: "",
+    },
+    products: [],
+    status: "due",
+    total: 0,
+  });
+
   const resetProductProps = () => {
     setproductProps({
       name: "",
@@ -110,8 +120,39 @@ function CreateBill() {
               </button>
             </div>
             <div className="text-sm font-poppins space-y-2 text-slate-600"></div>
-
-            <div className="mt-5 text-sm border-t pt-6 space-y-6 font-sans">
+            <div className="font-normal font-sans mt-10">
+              <label
+                className="block text-xs font-semibold text-slate-500 font-poppins"
+                htmlFor=""
+              >
+                Choose due date
+              </label>
+              <div className="flex items-center border rounded-md px-4 mt-2">
+                <span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-5 h-5"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"
+                    />
+                  </svg>
+                </span>
+                <input
+                  type="date"
+                  className="px-3 bg-transparent py-3 w-52 h-10 bg-emerald-50 outline-none text-slate-700"
+                  name=""
+                  id=""
+                />
+              </div>
+            </div>
+            <div className="mt-7 text-sm space-y-6 font-sans">
               <div className="flex items-center justify-end">
                 <button
                   onClick={() => setAddProductOpen(true)}
