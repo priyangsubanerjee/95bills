@@ -22,7 +22,11 @@ function AddClient() {
       <div className="h-fit max-h-screen overflow-y-auto lg:w-[450px] w-full bg-white lg:rounded-md">
         <div className="text-slate-700 text-sm">
           <div className="space-x-3 pt-5 px-5 flex items-center justify-between text-xs font-semibold text-slate-500">
-            <span className="">Add Client</span>
+            <div className="text-slate-700 text-sm">
+              <div className="text-xs font-semibold text-slate-500">
+                Add Client
+              </div>
+            </div>
             <button
               onClick={() => {
                 setAddClientOpen(false);
@@ -33,35 +37,41 @@ function AddClient() {
             </button>
           </div>
         </div>
-        <div className="p-5 space-y-2">
-          <div className="h-12 w-full border rounded-md flex items-center">
-            <input
-              type="text"
-              placeholder="Full name"
-              className="px-4 w-full outline-none"
-              name=""
-              id=""
-            />
+        <div className="p-5 space-y-4">
+          <div className="space-y-2">
+            <div className="h-12 w-full border focus-within:border-blue-500 rounded-md flex items-center">
+              <input
+                type="text"
+                placeholder="John Doe"
+                className="px-4 w-full outline-none"
+                name=""
+                id=""
+              />
+            </div>
           </div>
-          <div className="h-12 w-full border rounded-md flex items-center">
-            <input
-              type="email"
-              placeholder="Email address"
-              className="px-4 w-full outline-none"
-              name=""
-              id=""
-            />
+          <div className="space-y-2">
+            <div className="h-12 w-full border focus-within:border-blue-500 rounded-md flex items-center">
+              <input
+                type="email"
+                placeholder="abc@gmail.com"
+                className="px-4 w-full outline-none"
+                name=""
+                id=""
+              />
+            </div>
           </div>
-          <div className="h-12 w-full border rounded-md flex items-center">
-            <input
-              type="tel"
-              placeholder="Phone"
-              className="px-4 w-full outline-none"
-              name=""
-              id=""
-            />
+          <div className="space-y-2">
+            <div className="h-12 w-full border focus-within:border-blue-500 rounded-md flex items-center">
+              <input
+                type="tel"
+                placeholder="0998661322"
+                className="px-4 w-full outline-none"
+                name=""
+                id=""
+              />
+            </div>
           </div>
-          <div className="h-fit w-full border rounded-md flex items-center">
+          <div className="h-fit w-full border focus-within:border-blue-500 rounded-md flex items-center">
             <textarea
               name=""
               className="p-4 w-full outline-none"

@@ -8,7 +8,8 @@ function CreateBill() {
   const [changeStatusOpen, setchangeStatusOpen] = useState(false);
   const [chooseClientOpen, setchooseClientOpen] = useState(false);
   const [addProductOpen, setAddProductOpen] = useState(false);
-  const { createBillOpen, setCreateBillOpen } = useContext(GlobalStateContext);
+  const { createBillOpen, setCreateBillOpen, setAddClientOpen } =
+    useContext(GlobalStateContext);
 
   const [productProps, setproductProps] = useState({
     name: "",
@@ -124,7 +125,10 @@ function CreateBill() {
                   />
                 </svg>
               </button>
-              <button className="font-medium text-blue-500 text-xs">
+              <button
+                onClick={() => setAddClientOpen(true)}
+                className="font-medium text-blue-500 text-xs"
+              >
                 Add Client
               </button>
             </div>
@@ -342,7 +346,7 @@ function CreateBill() {
                   </label>
                   <input
                     type="text"
-                    className=" border rounded-md px-4 py-3 w-full outline-none text-slate-700"
+                    className="border focus-within:border-blue-500 rounded-md px-4 py-3 w-full outline-none text-slate-700"
                     name=""
                     id=""
                     placeholder="Css snippet"
@@ -362,7 +366,7 @@ function CreateBill() {
                   >
                     Price per unit
                   </label>
-                  <div className="flex items-center border rounded-md px-4">
+                  <div className="flex items-center border focus-within:border-blue-500 rounded-md px-4">
                     <span>₹</span>
                     <input
                       type="tel"
@@ -390,7 +394,7 @@ function CreateBill() {
                   <div className="flex items-center h-12">
                     <input
                       type="tel"
-                      className="border rounded-md px-4 h-full w-20 outline-none text-slate-700"
+                      className="border focus-within:border-blue-500 rounded-md px-4 h-full w-20 outline-none text-slate-700"
                       name=""
                       id=""
                       value={productProps.quantity}
