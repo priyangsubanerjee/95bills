@@ -37,7 +37,7 @@ function AddClient() {
             </button>
           </div>
         </div>
-        <div className="p-5 space-y-4">
+        <div className="px-5 mt-5 space-y-4">
           <div className="space-y-2">
             <div className="h-12 px-4 w-full border focus-within:border-blue-500 rounded-md flex items-center">
               <svg
