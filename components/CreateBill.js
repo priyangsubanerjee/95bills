@@ -54,7 +54,7 @@ function CreateBill() {
               </button>
             </div>
 
-            <div className="flex text-slate-800 text-sm items-center px-4 h-12 border rounded-md">
+            <div className="flex mt-7 text-slate-800 text-sm items-center px-4 h-12 rounded-md">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -118,18 +118,36 @@ function CreateBill() {
                   />
                 </svg>
                 <span className="ml-3">No products added</span>
+                <button className="ml-auto text-blue-500 bg-blue-50 px-4 py-2 text-sm rounded">
+                  Add product
+                </button>
+              </div>
+            </div>
+
+            <div className="border-b py-5 mt-6">
+              <div className="flex items-center justify-between text-sm">
+                <div className="ml-3 font-poppins font-semibold text-slate-700">
+                  <p>Total payable amount</p>
+                  <p className="font-sans font-normal text-xs mt-2">
+                    *inclusive of all taxes
+                  </p>
+                </div>
+
+                <span className="ml-3 font-poppins font-semibold text-slate-700 text-lg">
+                  ₹0
+                </span>
               </div>
             </div>
           </div>
 
-          <div className="p-5">
+          {/* <div className="p-5">
             <button
               key={"cancel"}
               className="p-4 text-sm rounded-md font-poppins font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 w-full mb-4 lg:mb-0 lg:text-sm"
             >
               Add
             </button>
-          </div>
+          </div> */}
         </div>
       </motion.div>
 
