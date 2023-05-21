@@ -25,7 +25,7 @@ function CreateBill() {
         exit={{ opacity: 0 }}
         className="fixed inset-0 h-full w-full bg-black/70 flex items-end lg:items-center justify-center closeCard z-20"
       >
-        <div className="h-fit max-h-screen overflow-y-auto lg:w-[450px] w-full bg-white lg:rounded-md">
+        <div className="h-fit max-h-screen overflow-y-auto lg:w-[450px] w-full bg-white lg:rounded-md pb-5">
           <div className="grid grid-cols-3 text-sm p-5">
             <button
               onClick={() => setCreateBillOpen(false)}
@@ -124,7 +124,7 @@ function CreateBill() {
               </div>
             </div>
 
-            <div className="border-b py-5 mt-6">
+            <div className=" py-5 mt-6">
               <div className="flex items-center justify-between text-sm">
                 <div className="ml-3 font-poppins font-semibold text-slate-700">
                   <p>Total payable amount</p>
