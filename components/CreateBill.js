@@ -9,6 +9,29 @@ function CreateBill() {
   const [changeStatusOpen, setChangeStatusOpen] = useState(false);
   const [selectClientOpen, setSelectClientOpen] = useState(false);
   const [addProductOpen, setAddProductOpen] = useState(false);
+
+  const [bill, setBill] = useState({
+    status: "due",
+    client: "",
+    dueDate: dateref.current ? dateref.current.valueAsDat : new Date(),
+    products: [],
+    total: 0,
+  });
+
+  const [product, setProduct] = useState({
+    name: "",
+    price: "",
+    quantity: "",
+  });
+
+  const resetProduct = () => {
+    setProduct({
+      name: "",
+      price: "",
+      quantity: "",
+    });
+  };
+
   useEffect(() => {
     dateref.current.valueAsDate = new Date();
     document.addEventListener("click", (e) => {
@@ -16,9 +39,25 @@ function CreateBill() {
         setCreateBillOpen(false);
       } else if (e.target.classList.contains("closeStatusOptionCard")) {
         setChangeStatusOpen(false);
+      } else if (e.target.classList.contains("closeAddProductCard")) {
+        setAddProductOpen(false);
+      } else if (e.target.classList.contains("closeClientSelectCard")) {
+        setSelectClientOpen(false);
       }
     });
   }, []);
+
+  useEffect(() => {
+    const total = bill.products.reduce((acc, item) => {
+      return acc + item.price * item.quantity;
+    }, 0);
+
+    setBill({
+      ...bill,
+      total: total,
+    });
+  }, [bill.products]);
+
   return (
     <>
       <motion.div
@@ -56,7 +95,10 @@ function CreateBill() {
               </button>
             </div>
 
-            <div className="flex mt-5 text-slate-800 text-sm items-center h-12 rounded-md">
+            <div
+              onClick={() => setSelectClientOpen(true)}
+              className="flex mt-5 text-slate-800 text-sm items-center h-12 rounded-md px-2"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -107,26 +149,77 @@ function CreateBill() {
 
             <div className="border-b py-5 mt-6">
               <div className="flex items-center text-sm">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  class="w-6 h-6"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M4.5 12a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm6 0a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm6 0a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                <span className="ml-3">No products added</span>
+                {bill.products.length == 0 && (
+                  <div className="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      class="w-6 h-6"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M4.5 12a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm6 0a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm6 0a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <span className="ml-3">No products added</span>
+                  </div>
+                )}
                 <button
                   onClick={() => setAddProductOpen(true)}
                   className="ml-auto text-slate-700 bg-slate-50 px-4 py-2 text-sm rounded"
                 >
-                  Add product
+                  {bill.products.length == 0
+                    ? "Add product"
+                    : "Add more products"}
                 </button>
               </div>
+              {bill.products.length > 0 && (
+                <div className="mt-7 text-sm space-y-4">
+                  {bill.products.map((product, index) => {
+                    return (
+                      <div key={index} className="grid grid-cols-6">
+                        <span className=" col-span-3">{product.name}</span>
+                        <span>{product.quantity}</span>
+                        <span>₹{product.price * product.quantity}</span>
+                        <button
+                          onClick={() => {
+                            if (
+                              window.confirm(
+                                "Are you sure you want to delete this product?"
+                              )
+                            ) {
+                              setBill({
+                                ...bill,
+                                products: bill.products.filter(
+                                  (item, i) => i !== index
+                                ),
+                              });
+                            }
+                          }}
+                          className="flex justify-end"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="w-5 h-5 text-red-500"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
 
             <div className=" py-5 mt-6">
@@ -139,7 +232,7 @@ function CreateBill() {
                 </div>
 
                 <span className="ml-3 font-poppins font-semibold text-slate-700 text-lg">
-                  ₹0
+                  ₹{bill.total}
                 </span>
               </div>
             </div>
@@ -199,7 +292,25 @@ function CreateBill() {
                 <span className="text-center text-xs font-semibold text-slate-500">
                   Add Product
                 </span>
-                <button className="text-right text-blue-500 font-medium">
+                <button
+                  onClick={() => {
+                    if (
+                      product.name == "" &&
+                      product.price == "" &&
+                      product.quantity == ""
+                    ) {
+                      alert("Please fill all the fields");
+                      return;
+                    }
+                    setBill({
+                      ...bill,
+                      products: [...bill.products, product],
+                    });
+                    resetProduct();
+                    setAddProductOpen(false);
+                  }}
+                  className="text-right text-blue-500 font-medium"
+                >
                   Done
                 </button>
               </div>
@@ -213,14 +324,16 @@ function CreateBill() {
                 <div className="h-12 px-4 border flex items-center mt-2 rounded">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
                     viewBox="0 0 24 24"
-                    fill="currentColor"
+                    stroke-width="1.5"
+                    stroke="currentColor"
                     class="w-4 h-4"
                   >
                     <path
-                      fill-rule="evenodd"
-                      d="M3.75 4.5a.75.75 0 01.75-.75h.75c8.284 0 15 6.716 15 15v.75a.75.75 0 01-.75.75h-.75a.75.75 0 01-.75-.75v-.75C18 11.708 12.292 6 5.25 6H4.5a.75.75 0 01-.75-.75V4.5zm0 6.75a.75.75 0 01.75-.75h.75a8.25 8.25 0 018.25 8.25v.75a.75.75 0 01-.75.75H12a.75.75 0 01-.75-.75v-.75a6 6 0 00-6-6H4.5a.75.75 0 01-.75-.75v-.75zm0 7.5a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z"
-                      clip-rule="evenodd"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"
                     />
                   </svg>
 
@@ -228,6 +341,10 @@ function CreateBill() {
                     type="text"
                     placeholder="Popover modal"
                     className="h-full px-4 outline-none"
+                    value={product.name}
+                    onChange={(e) =>
+                      setProduct({ ...product, name: e.target.value })
+                    }
                     name=""
                     id=""
                   />
@@ -241,21 +358,44 @@ function CreateBill() {
                   Price per unit
                 </label>
                 <div className="h-12 flex items-center space-x-5 mt-2">
-                  <div className="w-fit h-full px-4 border flex items-center rounded">
+                  <div className="w-fit h-full px-4 border flex items-center rounded-md overflow-hidden">
                     ₹
                     <input
-                      type="text"
+                      type="tel"
                       placeholder="0"
                       className="h-full px-4 outline-none w-20"
+                      value={product.price}
+                      onChange={(e) =>
+                        setProduct({
+                          ...product,
+                          price: e.target.value,
+                        })
+                      }
                       name=""
                       id=""
                     />
                   </div>
                   <div className="h-full flex items-center space-x-2">
-                    <button className="h-full text-sm px-4 rounded-md bg-slate-100 text-slate-700">
+                    <button
+                      onClick={() =>
+                        setProduct({
+                          ...product,
+                          price: 500,
+                        })
+                      }
+                      className="h-full text-sm px-4 rounded-md bg-slate-100 text-slate-700"
+                    >
                       ₹500
                     </button>
-                    <button className="h-full text-sm px-4 rounded-md bg-slate-100 text-slate-700">
+                    <button
+                      onClick={() =>
+                        setProduct({
+                          ...product,
+                          price: 1000,
+                        })
+                      }
+                      className="h-full text-sm px-4 rounded-md bg-slate-100 text-slate-700"
+                    >
                       ₹1000
                     </button>
                   </div>
@@ -269,17 +409,39 @@ function CreateBill() {
                   Quantity
                 </label>
                 <div className="h-12 flex items-center space-x-5 mt-2">
-                  <div className="w-fit h-full border flex items-center rounded">
+                  <div className="w-fit h-full border flex items-center rounded-md">
                     <input
-                      type="text"
+                      type="tel"
                       placeholder="0"
-                      className="h-full px-4 outline-none w-20"
+                      value={product.quantity}
+                      onChange={(e) =>
+                        setProduct({
+                          ...product,
+                          quantity: e.target.value,
+                        })
+                      }
+                      className="h-full px-4 outline-none w-20 bg-transparent"
                       name=""
                       id=""
                     />
                   </div>
                   <div className="h-full flex items-center space-x-2">
-                    <button className="h-full text-sm px-4 rounded-md bg-slate-100 text-slate-700">
+                    <button
+                      onClick={() => {
+                        if (product.quantity === "") {
+                          setProduct({
+                            ...product,
+                            quantity: 1,
+                          });
+                        } else {
+                          setProduct({
+                            ...product,
+                            quantity: parseInt(product.quantity) + 1,
+                          });
+                        }
+                      }}
+                      className="h-full text-sm px-4 rounded-md bg-slate-100 text-slate-700"
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -295,7 +457,22 @@ function CreateBill() {
                         />
                       </svg>
                     </button>
-                    <button className="h-full text-sm px-4 rounded-md bg-slate-100 text-slate-700">
+                    <button
+                      onClick={() => {
+                        if (product.quantity === "") {
+                          setProduct({
+                            ...product,
+                            quantity: 1,
+                          });
+                        } else if (product.quantity > 0) {
+                          setProduct({
+                            ...product,
+                            quantity: parseInt(product.quantity) - 1,
+                          });
+                        }
+                      }}
+                      className="h-full text-sm px-4 rounded-md bg-slate-100 text-slate-700"
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -313,6 +490,81 @@ function CreateBill() {
                     </button>
                   </div>
                 </div>
+              </div>
+              <p className="px-5 mt-7 text-xs text-slate-600">
+                * Product once added cannot be edited
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {selectClientOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 h-full w-full bg-black/70 flex items-end lg:items-center justify-center closeClientSelectCard z-20"
+          >
+            <div className="h-[70%] relative max-h-screen overflow-y-auto lg:w-[450px] w-full bg-white lg:rounded-md pb-5">
+              <div className="sticky top-0 inset-x-0 w-full bg-white">
+                <div className="grid grid-cols-3 text-sm p-5">
+                  <button
+                    onClick={() => setSelectClientOpen(false)}
+                    className="text-left text-blue-500 font-medium"
+                  >
+                    Cancel
+                  </button>
+                  <span className="text-center text-xs font-semibold text-slate-500">
+                    Select client
+                  </span>
+                  <button className="text-right text-blue-500 font-medium"></button>
+                </div>
+                <div className="px-5">
+                  <div className="flex items-center h-12 bg-slate-50 rounded-md px-4">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="w-4 h-4 text-slate-600"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                      />
+                    </svg>
+
+                    <input
+                      type="text"
+                      placeholder="Search client"
+                      name=""
+                      className="px-3 text-slate-700 bg-transparent outline-none"
+                      id=""
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                {[...Array(20)].map((e, i) => {
+                  return (
+                    <div key={i}>
+                      <div className="border-b py-4 px-6 space-y-2">
+                        <p className="text-sm text-slate-700 font-semibold">
+                          Craig bernard
+                        </p>
+                        <p className="text-xs text-slate-700 font-medium">
+                          craig@gmail.com
+                        </p>
+                        <p className="text-xs text-slate-500">+91 8859083234</p>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </motion.div>
