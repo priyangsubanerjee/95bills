@@ -86,6 +86,9 @@ function CreateBill() {
           </div>
         </div>
       </motion.div>
+
+      {/* Status change  */}
+
       <AnimatePresence>
         {changeStatusOpen && (
           <motion.div
