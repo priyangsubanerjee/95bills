@@ -187,7 +187,7 @@ function CreateBill() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 h-full w-full bg-black/70 flex items-end lg:items-center justify-center closeStatusOptionCard z-20"
           >
-            <div className="h-fit max-h-screen overflow-y-auto lg:w-[450px] w-full bg-white lg:rounded-md pb-5">
+            <div className="h-fit max-h-screen overflow-y-auto lg:w-[450px] w-full bg-white lg:rounded-md pb-10">
               <div className="grid grid-cols-3 text-sm p-5">
                 <button
                   onClick={() => setAddProductOpen(false)}
