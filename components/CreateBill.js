@@ -239,8 +239,8 @@ function CreateBill() {
                 >
                   Price per unit
                 </label>
-                <div className="h-12 flex items-center space-x-5">
-                  <div className="w-fit h-full px-4 border flex items-center mt-2 rounded">
+                <div className="h-12 flex items-center space-x-5 mt-2">
+                  <div className="w-fit h-full px-4 border flex items-center rounded">
                     ₹
                     <input
                       type="text"
@@ -250,8 +250,35 @@ function CreateBill() {
                       id=""
                     />
                   </div>
-                  <div className="h-full">
-                    <button className="h-full px-4 rounded bg-slate-100">
+                  <div className="h-full flex items-center space-x-2">
+                    <button className="h-full text-sm px-4 rounded-md bg-slate-100 text-slate-700">
+                      ₹500
+                    </button>
+                    <button className="h-full text-sm px-4 rounded-md bg-slate-100 text-slate-700">
+                      ₹1000
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div className="px-5 mt-5">
+                <label
+                  className="block text-xs font-semibold text-slate-500"
+                  htmlFor=""
+                >
+                  Quantity
+                </label>
+                <div className="h-12 flex items-center space-x-5 mt-2">
+                  <div className="w-fit h-full border flex items-center rounded">
+                    <input
+                      type="text"
+                      placeholder="0"
+                      className="h-full px-4 outline-none w-20"
+                      name=""
+                      id=""
+                    />
+                  </div>
+                  <div className="h-full flex items-center space-x-2">
+                    <button className="h-full text-sm px-4 rounded-md bg-slate-100 text-slate-700">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -264,6 +291,22 @@ function CreateBill() {
                           stroke-linecap="round"
                           stroke-linejoin="round"
                           d="M12 4.5v15m7.5-7.5h-15"
+                        />
+                      </svg>
+                    </button>
+                    <button className="h-full text-sm px-4 rounded-md bg-slate-100 text-slate-700">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-4 h-4"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M19.5 12h-15"
                         />
                       </svg>
                     </button>
