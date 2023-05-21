@@ -7,6 +7,7 @@ function CreateBill() {
   const dateref = useRef(null);
   const { createBillOpen, setCreateBillOpen } = useContext(GlobalStateContext);
   const [changeStatusOpen, setChangeStatusOpen] = useState(false);
+  const [addProductOpen, setAddProductOpen] = useState(true);
   useEffect(() => {
     dateref.current.valueAsDate = new Date();
     document.addEventListener("click", (e) => {
@@ -118,7 +119,10 @@ function CreateBill() {
                   />
                 </svg>
                 <span className="ml-3">No products added</span>
-                <button className="ml-auto text-slate-700 bg-slate-50 px-4 py-2 text-sm rounded">
+                <button
+                  onClick={() => setAddProductOpen(true)}
+                  className="ml-auto text-slate-700 bg-slate-50 px-4 py-2 text-sm rounded"
+                >
                   Add product
                 </button>
               </div>
@@ -139,15 +143,6 @@ function CreateBill() {
               </div>
             </div>
           </div>
-
-          {/* <div className="p-5">
-            <button
-              key={"cancel"}
-              className="p-4 text-sm rounded-md font-poppins font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 w-full mb-4 lg:mb-0 lg:text-sm"
-            >
-              Add
-            </button>
-          </div> */}
         </div>
       </motion.div>
 
@@ -179,6 +174,102 @@ function CreateBill() {
                 <li className="py-4 border-b">Paid late</li>
                 <li className="py-4">Due</li>
               </ul>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {addProductOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 h-full w-full bg-black/70 flex items-end lg:items-center justify-center closeStatusOptionCard z-20"
+          >
+            <div className="h-fit max-h-screen overflow-y-auto lg:w-[450px] w-full bg-white lg:rounded-md pb-5">
+              <div className="grid grid-cols-3 text-sm p-5">
+                <button
+                  onClick={() => setAddProductOpen(false)}
+                  className="text-left text-blue-500 font-medium"
+                >
+                  Cancel
+                </button>
+                <span className="text-center text-xs font-semibold text-slate-500">
+                  Add Product
+                </span>
+                <button className="text-right text-blue-500 font-medium">
+                  Done
+                </button>
+              </div>
+              <div className="px-5 mt-5">
+                <label
+                  className="block text-xs font-semibold text-slate-500"
+                  htmlFor=""
+                >
+                  Product name
+                </label>
+                <div className="h-12 px-4 border flex items-center mt-2 rounded">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="w-4 h-4"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M3.75 4.5a.75.75 0 01.75-.75h.75c8.284 0 15 6.716 15 15v.75a.75.75 0 01-.75.75h-.75a.75.75 0 01-.75-.75v-.75C18 11.708 12.292 6 5.25 6H4.5a.75.75 0 01-.75-.75V4.5zm0 6.75a.75.75 0 01.75-.75h.75a8.25 8.25 0 018.25 8.25v.75a.75.75 0 01-.75.75H12a.75.75 0 01-.75-.75v-.75a6 6 0 00-6-6H4.5a.75.75 0 01-.75-.75v-.75zm0 7.5a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+
+                  <input
+                    type="text"
+                    placeholder="Popover modal"
+                    className="h-full px-4 outline-none"
+                    name=""
+                    id=""
+                  />
+                </div>
+              </div>
+              <div className="px-5 mt-5">
+                <label
+                  className="block text-xs font-semibold text-slate-500"
+                  htmlFor=""
+                >
+                  Price per unit
+                </label>
+                <div className="h-12 flex items-center space-x-5">
+                  <div className="w-fit h-full px-4 border flex items-center mt-2 rounded">
+                    ₹
+                    <input
+                      type="text"
+                      placeholder="0"
+                      className="h-full px-4 outline-none w-20"
+                      name=""
+                      id=""
+                    />
+                  </div>
+                  <div className="h-full">
+                    <button className="h-full px-4 rounded bg-slate-100">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-4 h-4"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M12 4.5v15m7.5-7.5h-15"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </motion.div>
         )}
