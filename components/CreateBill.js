@@ -5,13 +5,18 @@ import GlobalStateContext from "@/states/globalStateContext";
 
 function CreateBill() {
   const dateref = useRef(null);
-  const { createBillOpen, setCreateBillOpen } = useContext(GlobalStateContext);
+  const {
+    createBillOpen,
+    setCreateBillOpen,
+    createBillStatus,
+    setCreateBillStatus,
+  } = useContext(GlobalStateContext);
   const [changeStatusOpen, setChangeStatusOpen] = useState(false);
   const [selectClientOpen, setSelectClientOpen] = useState(false);
   const [addProductOpen, setAddProductOpen] = useState(false);
 
   const [bill, setBill] = useState({
-    status: "due",
+    status: createBillStatus,
     client: "",
     dueDate: dateref.current ? dateref.current.valueAsDat : new Date(),
     products: [],
@@ -66,7 +71,7 @@ function CreateBill() {
         exit={{ opacity: 0 }}
         className="fixed inset-0 h-full w-full bg-black/70 flex items-end lg:items-center justify-center closeCard z-20"
       >
-        <div className="h-fit max-h-screen overflow-y-auto lg:w-[450px] w-full bg-white lg:rounded-md pb-5">
+        <div className="h-fit max-h-screen overflow-y-auto lg:w-[550px] w-full bg-white lg:rounded-md pb-5">
           <div className="grid grid-cols-3 text-sm p-5">
             <button
               onClick={() => setCreateBillOpen(false)}
@@ -82,10 +87,26 @@ function CreateBill() {
             </button>
           </div>
           <div className="px-5">
-            <div className="h-12 text-sm bg-yellow-50 rounded-md px-5 flex items-center justify-between">
-              <div className="flex font-medium items-center text-yellow-500 justify-center space-x-3">
-                <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
-                <span>Payment due</span>
+            <div
+              className={`h-12 text-sm ${
+                bill.status == "due"
+                  ? "bg-yellow-50 text-yellow-500"
+                  : "bg-teal-50 text-teal-500"
+              } rounded-md px-5 flex items-center justify-between`}
+            >
+              <div className="flex font-medium items-center justify-center space-x-3">
+                <div
+                  className={`h-3 w-3 rounded-full ${
+                    bill.status == "due" ? " bg-yellow-500" : "bg-teal-500"
+                  } bg-yellow-500`}
+                ></div>
+                <span>
+                  {bill.status == "due"
+                    ? "Due"
+                    : bill.status == "paid"
+                    ? "Paid"
+                    : "Paid late "}
+                </span>
               </div>
               <button
                 onClick={() => setChangeStatusOpen(true)}
@@ -183,38 +204,40 @@ function CreateBill() {
                         <span className=" col-span-3">{product.name}</span>
                         <span>{product.quantity}</span>
                         <span>₹{product.price * product.quantity}</span>
-                        <button
-                          onClick={() => {
-                            if (
-                              window.confirm(
-                                "Are you sure you want to delete this product?"
-                              )
-                            ) {
-                              setBill({
-                                ...bill,
-                                products: bill.products.filter(
-                                  (item, i) => i !== index
-                                ),
-                              });
-                            }
-                          }}
-                          className="flex justify-end"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            class="w-5 h-5 text-red-500"
+                        <div className="flex justify-end">
+                          <button
+                            onClick={() => {
+                              if (
+                                window.confirm(
+                                  "Are you sure you want to delete this product?"
+                                )
+                              ) {
+                                setBill({
+                                  ...bill,
+                                  products: bill.products.filter(
+                                    (item, i) => i !== index
+                                  ),
+                                });
+                              }
+                            }}
+                            className="flex justify-end w-fit"
                           >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                            />
-                          </svg>
-                        </button>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke-width="1.5"
+                              stroke="currentColor"
+                              class="w-5 h-5 text-red-500"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                              />
+                            </svg>
+                          </button>
+                        </div>
                       </div>
                     );
                   })}
@@ -250,7 +273,7 @@ function CreateBill() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 h-full w-full bg-black/70 flex items-end lg:items-center justify-center closeStatusOptionCard z-20"
           >
-            <div className="h-fit max-h-screen overflow-y-auto lg:w-[450px] w-full bg-white lg:rounded-md pb-5">
+            <div className="h-fit max-h-screen overflow-y-auto lg:w-[550px] w-full bg-white lg:rounded-md pb-5">
               <div className="grid grid-cols-3 text-sm p-5">
                 <button
                   onClick={() => setChangeStatusOpen(false)}
@@ -263,15 +286,50 @@ function CreateBill() {
                 </span>
                 <button className="text-right text-blue-500 font-medium"></button>
               </div>
-              <ul className="text-center text-blue-500 mt-3">
-                <li className="py-4 border-b">Paid on time</li>
-                <li className="py-4 border-b">Paid late</li>
-                <li className="py-4">Due</li>
+              <ul className="text-center text-blue-500 mt-3 text-sm">
+                <li
+                  onClick={() => {
+                    setBill({
+                      ...bill,
+                      status: "paid",
+                    });
+                    setChangeStatusOpen(false);
+                  }}
+                  className="py-4 border-b"
+                >
+                  Paid on time
+                </li>
+                <li
+                  onClick={() => {
+                    setBill({
+                      ...bill,
+                      status: "paid_late",
+                    });
+                    setChangeStatusOpen(false);
+                  }}
+                  className="py-4 border-b"
+                >
+                  Paid late
+                </li>
+                <li
+                  onClick={() => {
+                    setBill({
+                      ...bill,
+                      status: "due",
+                    });
+                    setChangeStatusOpen(false);
+                  }}
+                  className="py-4"
+                >
+                  Due
+                </li>
               </ul>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Add products */}
 
       <AnimatePresence>
         {addProductOpen && (
@@ -281,7 +339,7 @@ function CreateBill() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 h-full w-full bg-black/70 flex items-end lg:items-center justify-center closeAddProductCard z-20"
           >
-            <div className="h-fit max-h-screen overflow-y-auto lg:w-[450px] w-full bg-white lg:rounded-md pb-10">
+            <div className="h-fit max-h-screen overflow-y-auto lg:w-[550px] w-full bg-white lg:rounded-md pb-10">
               <div className="grid grid-cols-3 text-sm p-5">
                 <button
                   onClick={() => setAddProductOpen(false)}
@@ -499,6 +557,8 @@ function CreateBill() {
         )}
       </AnimatePresence>
 
+      {/* Choose client */}
+
       <AnimatePresence>
         {selectClientOpen && (
           <motion.div
@@ -507,7 +567,7 @@ function CreateBill() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 h-full w-full bg-black/70 flex items-end lg:items-center justify-center closeClientSelectCard z-20"
           >
-            <div className="h-[70%] relative max-h-screen overflow-y-auto lg:w-[450px] w-full bg-white lg:rounded-md pb-5">
+            <div className="h-[70%] relative max-h-screen overflow-y-auto lg:w-[550px] w-full bg-white lg:rounded-md pb-5">
               <div className="sticky top-0 inset-x-0 w-full bg-white">
                 <div className="grid grid-cols-3 text-sm p-5">
                   <button
@@ -553,7 +613,7 @@ function CreateBill() {
                 {[...Array(20)].map((e, i) => {
                   return (
                     <div key={i}>
-                      <div className="border-b py-4 px-6 space-y-2">
+                      <div className="border-b bg-white py-4 px-6 space-y-2 hover:bg-slate-50 cursor-pointer">
                         <p className="text-sm text-slate-700 font-semibold">
                           Craig bernard
                         </p>

@@ -41,6 +41,8 @@ function Dashboard() {
     setCreateBillOpen,
     addClientOpen,
     setAddClientOpen,
+    createBillStatus,
+    setCreateBillStatus,
   } = useContext(GlobalStateContext);
   const router = useRouter();
   return (
@@ -110,6 +112,7 @@ function Dashboard() {
                     className=""
                     onClick={() => {
                       setCreateBillOpen(true);
+                      setCreateBillStatus("due");
                     }}
                   >
                     Create
@@ -122,6 +125,7 @@ function Dashboard() {
                   <button
                     onClick={() => {
                       setCreateBillOpen(true);
+                      setCreateBillStatus("paid");
                     }}
                     className=""
                   >
@@ -131,6 +135,7 @@ function Dashboard() {
                   <button
                     onClick={() => {
                       setCreateBillOpen(true);
+                      setCreateBillStatus("due");
                     }}
                     className=""
                   >
@@ -141,6 +146,7 @@ function Dashboard() {
                     className=""
                     onClick={() => {
                       setCreateBillOpen(true);
+                      setCreateBillStatus("due");
                     }}
                   >
                     Create
