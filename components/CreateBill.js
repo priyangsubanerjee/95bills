@@ -19,6 +19,8 @@ function CreateBill({}) {
     quantity: 0,
   });
 
+  const [editIndex, setEditIndex] = useState(null);
+
   const [billProps, setbillProps] = useState({
     id: Math.floor(Math.random() * 1000000000),
     client: {
@@ -151,18 +153,12 @@ function CreateBill({}) {
                   />
                 </svg>
               </button>
-              <button
-                onClick={() => setAddClientOpen(true)}
-                className="font-medium text-blue-500 text-xs"
-              >
-                Add Client
-              </button>
             </div>
             <div className="mt-7 text-sm space-y-6 font-sans">
               <div className="flex items-center justify-end">
                 <button
                   onClick={() => setAddProductOpen(true)}
-                  className="font-medium text-blue-500 text-xs"
+                  className="font-medium bg-blue-50 px-4 py-2 text-blue-500 text-xs rounded"
                 >
                   Add Product
                 </button>
@@ -170,10 +166,87 @@ function CreateBill({}) {
               {billProps.products.map((product, index) => {
                 return (
                   <div key={index} className="grid grid-cols-6 text-slate-700">
-                    <span className="col-span-3">{product.name}</span>
-                    <span className="text-center">{product.qty}</span>
-                    <span className="text-right">{product.total}</span>
-                    <span className="text-right">-</span>
+                    <span
+                      onClick={() => {
+                        setproductProps({
+                          ...productProps,
+                          name: product.name,
+                          price_per_unit: product.pricePerUnit,
+                          quantity: product.qty,
+                        });
+
+                        setEditIndex(index);
+                        setAddProductOpen(true);
+                      }}
+                      className="col-span-3"
+                    >
+                      {product.name}
+                    </span>
+                    <span
+                      onClick={() => {
+                        setproductProps({
+                          ...productProps,
+                          name: product.name,
+                          price_per_unit: product.pricePerUnit,
+                          quantity: product.qty,
+                        });
+
+                        setEditIndex(index);
+                        setAddProductOpen(true);
+                      }}
+                      className="text-center"
+                    >
+                      {product.qty}
+                    </span>
+                    <span
+                      onClick={() => {
+                        setproductProps({
+                          ...productProps,
+                          name: product.name,
+                          price_per_unit: product.pricePerUnit,
+                          quantity: product.qty,
+                        });
+
+                        setEditIndex(index);
+                        setAddProductOpen(true);
+                      }}
+                      className="text-right"
+                    >
+                      {product.total}
+                    </span>
+                    <span className="flex justify-end">
+                      <button
+                        onClick={() => {
+                          if (
+                            window.confirm(
+                              "Are you sure you want to delete this product?"
+                            )
+                          ) {
+                            setbillProps({
+                              ...billProps,
+                              products: billProps.products.filter(
+                                (e, i) => i != index
+                              ),
+                            });
+                          }
+                        }}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          class="w-5 h-5 text-red-400"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                      </button>
+                    </span>
                   </div>
                 );
               })}
@@ -183,7 +256,7 @@ function CreateBill({}) {
                 <>
                   <div className="flex justify-between items-center text-xl font-bold text-slate-700 border-t mt-10 pt-6">
                     <span className="text-base text-slate-700 font-poppins">
-                      Total:
+                      Total payable amount:
                     </span>
                     <span>
                       {"₹" +
@@ -490,25 +563,47 @@ function CreateBill({}) {
               <div className="p-5">
                 <button
                   onClick={() => {
-                    setbillProps({
-                      ...billProps,
-                      products: [
-                        ...billProps.products,
-                        {
-                          name: productProps.name,
-                          pricePerUnit: productProps.price_per_unit,
-                          qty: productProps.quantity,
-                          total:
-                            productProps.price_per_unit * productProps.quantity,
-                        },
-                      ],
-                    });
+                    if (editIndex == null) {
+                      setbillProps({
+                        ...billProps,
+                        products: [
+                          ...billProps.products,
+                          {
+                            name: productProps.name,
+                            pricePerUnit: productProps.price_per_unit,
+                            qty: productProps.quantity,
+                            total:
+                              productProps.price_per_unit *
+                              productProps.quantity,
+                          },
+                        ],
+                      });
+                    } else {
+                      setbillProps({
+                        ...billProps,
+                        products: billProps.products.map((e, i) => {
+                          if (i == editIndex) {
+                            return {
+                              name: productProps.name,
+                              pricePerUnit: productProps.price_per_unit,
+                              qty: productProps.quantity,
+                              total:
+                                productProps.price_per_unit *
+                                productProps.quantity,
+                            };
+                          } else {
+                            return e;
+                          }
+                        }),
+                      });
+                      setEditIndex(null);
+                    }
                     resetProductProps();
                     setAddProductOpen(false);
                   }}
                   className="p-4 text-sm rounded-md font-poppins font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 w-full mb-4 lg:mb-0 lg:text-sm"
                 >
-                  Add
+                  {editIndex == null ? "Add product" : "Update product"}
                 </button>
               </div>
             </div>
