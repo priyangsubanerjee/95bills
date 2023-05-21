@@ -116,8 +116,8 @@ function CreateBill() {
               <div className="flex font-medium items-center justify-center space-x-3">
                 <div
                   className={`h-3 w-3 rounded-full ${
-                    bill.status == "due" ? " bg-yellow-500" : "bg-teal-500"
-                  } bg-yellow-500`}
+                    bill.status == "due" ? "bg-yellow-500" : "bg-teal-500"
+                  }`}
                 ></div>
                 <span>
                   {bill.status == "due"
