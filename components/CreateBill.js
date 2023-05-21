@@ -1,12 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import GlobalStateContext from "@/states/globalStateContext";
 
 function CreateBill() {
+  const dateref = useRef(null);
   const { createBillOpen, setCreateBillOpen } = useContext(GlobalStateContext);
   const [changeStatusOpen, setChangeStatusOpen] = useState(false);
   useEffect(() => {
+    dateref.current.valueAsDate = new Date();
     document.addEventListener("click", (e) => {
       if (e.target.classList.contains("closeCard")) {
         setCreateBillOpen(false);
@@ -75,7 +77,51 @@ function CreateBill() {
                 />
               </svg>
             </div>
+
+            <div className="flex text-slate-800 text-sm items-center px-4 h-12 border rounded-md">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-5 h-5 text-slate-600"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.75 2.25A.75.75 0 017.5 3v1.5h9V3A.75.75 0 0118 3v1.5h.75a3 3 0 013 3v11.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V7.5a3 3 0 013-3H6V3a.75.75 0 01.75-.75zm13.5 9a1.5 1.5 0 00-1.5-1.5H5.25a1.5 1.5 0 00-1.5 1.5v7.5a1.5 1.5 0 001.5 1.5h13.5a1.5 1.5 0 001.5-1.5v-7.5z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+
+              <input
+                type="date"
+                className="bg-transparent ml-2"
+                ref={dateref}
+                name=""
+                id=""
+              />
+
+              <span className="ml-auto text-sm text-slate-500">Due date</span>
+            </div>
+
+            <div className="border-b py-5 mt-6">
+              <div className="flex items-center text-sm">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.5 12a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm6 0a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm6 0a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span className="ml-3">No products added</span>
+              </div>
+            </div>
           </div>
+
           <div className="p-5">
             <button
               key={"cancel"}
