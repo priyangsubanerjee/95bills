@@ -2,6 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import GlobalStateContext from "@/states/globalStateContext";
 import { signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 
@@ -40,9 +41,11 @@ function Sidenav() {
   return (
     <div className="bg-slate-100 w-72 lg:w-60 h-full overflow-y-auto pb-28 lg:pb-0 shrink-0">
       <div className="text-center p-8 font-poppins">
-        <h1 className="text-xl text-slate-700 font-extrabold">
-          95<span className="font-light">Bills.com</span>
-        </h1>
+        <Link href="/">
+          <h1 className="text-xl text-slate-700 font-extrabold">
+            95<span className="font-light">Bills.com</span>
+          </h1>
+        </Link>
       </div>
       <div className="flex items-center justify-center">
         <button className="flex items-center space-x-2 bg-white text-xs border font-medium font-poppins py-2 px-5 rounded-full">
