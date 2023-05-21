@@ -33,8 +33,6 @@ export async function getServerSideProps(context) {
 function Dashboard() {
   const session = useSession();
   const { tab, setTab } = useContext(GlobalStateContext) || [];
-  const { createDefaultStatus, setCreateDefaultStatus } =
-    useContext(GlobalStateContext);
 
   const {
     sidenavOpen,
@@ -143,7 +141,6 @@ function Dashboard() {
                     className=""
                     onClick={() => {
                       setCreateBillOpen(true);
-                      setCreateDefaultStatus("due");
                     }}
                   >
                     Create
