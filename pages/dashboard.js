@@ -46,10 +46,7 @@ function Dashboard() {
   } = useContext(GlobalStateContext);
   const router = useRouter();
   return (
-    <div className="h-screen w-screen fixed inset-0 bg-white lg:flex overflow-hidden">
-      <div className="hidden lg:block">
-        <Sidenav />
-      </div>
+    <>
       <AnimatePresence>
         {sidenavOpen && (
           <motion.div
@@ -72,103 +69,113 @@ function Dashboard() {
           </motion.div>
         )}
       </AnimatePresence>
-      <div className="w-full h-full overflow-y-auto">
-        <div className="lg:p-20 p-6">
-          <div className="flex items-center">
-            <button className="lg:hidden" onClick={() => setSidenavOpen(true)}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="w-6 h-6"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                />
-              </svg>
-            </button>
-            <h1 className="w-fit text-2xl lg:text-4xl text-slate-700 font-bold font-poppins ml-4 lg:ml-0">
-              {router.query.tab
-                ? router.query.tab?.charAt(0).toUpperCase() +
-                  router.query.tab?.slice(1)
-                : "Invoices"}
-            </h1>
+      <AnimatePresence>{addClientOpen && <AddClient />}</AnimatePresence>
+      <AnimatePresence>{createBillOpen && <CreateBill />}</AnimatePresence>
 
-            <div className="ml-auto font-medium text-blue-500">
-              {router.query.tab == "invoices" ? (
-                <button
-                  className=""
-                  onClick={() => {
-                    setCreateBillOpen(true);
-                    setCreateDefaultStatus("due");
-                  }}
+      <div className="h-screen w-screen fixed inset-0 bg-white lg:flex overflow-hidden">
+        <div className="hidden lg:block">
+          <Sidenav />
+        </div>
+        <div className="w-full h-full overflow-y-auto">
+          <div className="lg:p-20 p-6">
+            {/* Navbar mobile */}
+
+            <div className="flex items-center">
+              <button
+                className="lg:hidden"
+                onClick={() => setSidenavOpen(true)}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
                 >
-                  Create
-                </button>
-              ) : router.query.tab == "clients" ? (
-                <button onClick={() => setAddClientOpen(true)} className="">
-                  Add
-                </button>
-              ) : router.query.tab == "paid" ? (
-                <button
-                  onClick={() => {
-                    setCreateDefaultStatus("paid_onTime");
-                    setCreateBillOpen(true);
-                  }}
-                  className=""
-                >
-                  Add Record
-                </button>
-              ) : router.query.tab == "due" ? (
-                <button
-                  onClick={() => {
-                    setCreateBillOpen(true);
-                    setCreateDefaultStatus("due");
-                  }}
-                  className=""
-                >
-                  Add
-                </button>
-              ) : (
-                <button
-                  className=""
-                  onClick={() => {
-                    setCreateBillOpen(true);
-                    setCreateDefaultStatus("due");
-                  }}
-                >
-                  Create
-                </button>
-              )}
-            </div>
-          </div>
-          <p className="text-slate-500 text-xs lg:text-sm mt-3">
-            Tap on an invoice to view details.
-          </p>
-          {tab == 0 ? (
-            <div>
-              <div className="space-y-4 mt-10">
-                <PayCard />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                  />
+                </svg>
+              </button>
+              <h1 className="w-fit text-2xl lg:text-4xl text-slate-700 font-bold font-poppins ml-4 lg:ml-0">
+                {router.query.tab
+                  ? router.query.tab?.charAt(0).toUpperCase() +
+                    router.query.tab?.slice(1)
+                  : "Invoices"}
+              </h1>
+              <div className="ml-auto font-medium text-blue-500">
+                {router.query.tab == "invoices" ? (
+                  <button
+                    className=""
+                    onClick={() => {
+                      setCreateBillOpen(true);
+                    }}
+                  >
+                    Create
+                  </button>
+                ) : router.query.tab == "clients" ? (
+                  <button onClick={() => setAddClientOpen(true)} className="">
+                    Add
+                  </button>
+                ) : router.query.tab == "paid" ? (
+                  <button
+                    onClick={() => {
+                      setCreateBillOpen(true);
+                    }}
+                    className=""
+                  >
+                    Add Record
+                  </button>
+                ) : router.query.tab == "due" ? (
+                  <button
+                    onClick={() => {
+                      setCreateBillOpen(true);
+                    }}
+                    className=""
+                  >
+                    Add
+                  </button>
+                ) : (
+                  <button
+                    className=""
+                    onClick={() => {
+                      setCreateBillOpen(true);
+                      setCreateDefaultStatus("due");
+                    }}
+                  >
+                    Create
+                  </button>
+                )}
               </div>
             </div>
-          ) : tab == 1 ? (
-            <div>Paid</div>
-          ) : tab == 2 ? (
-            <div>Due</div>
-          ) : tab == 3 ? (
-            <div>Customers</div>
-          ) : tab == 4 ? (
-            <div>Settings</div>
-          ) : null}
+            <p className="text-slate-500 text-xs lg:text-sm mt-3">
+              Tap on an invoice to view details.
+            </p>
+
+            {/* Body content */}
+
+            {tab == 0 ? (
+              <div>
+                <div className="space-y-4 mt-10">
+                  <PayCard />
+                </div>
+              </div>
+            ) : tab == 1 ? (
+              <div>Paid</div>
+            ) : tab == 2 ? (
+              <div>Due</div>
+            ) : tab == 3 ? (
+              <div>Customers</div>
+            ) : tab == 4 ? (
+              <div>Settings</div>
+            ) : null}
+          </div>
         </div>
       </div>
-      <AnimatePresence>{createBillOpen && <CreateBill />}</AnimatePresence>
-      <AnimatePresence>{addClientOpen && <AddClient />}</AnimatePresence>
-    </div>
+    </>
   );
 }
 
