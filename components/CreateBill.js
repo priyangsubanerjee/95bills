@@ -39,7 +39,7 @@ function CreateBill() {
             </button>
           </div>
           <div className="px-5">
-            <div className="h-12 bg-yellow-50 rounded-md px-5 flex items-center justify-between">
+            <div className="h-12 text-sm bg-yellow-50 rounded-md px-5 flex items-center justify-between">
               <div className="flex font-medium items-center text-yellow-500 justify-center space-x-3">
                 <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
                 <span>Payment due</span>
