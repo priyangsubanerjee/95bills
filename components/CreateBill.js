@@ -29,6 +29,25 @@ function CreateBill() {
     quantity: "",
   });
 
+  const clients = [
+    {
+      id: "1",
+      name: "John Doe",
+      email: "john@example.com",
+      phone: "9876543210",
+      address:
+        "123, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    },
+    {
+      id: "2",
+      name: "John Joe",
+      email: "john@example.com",
+      phone: "9874553210",
+      address:
+        "345, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    },
+  ];
+
   const resetProduct = () => {
     setProduct({
       name: "",
@@ -128,7 +147,9 @@ function CreateBill() {
               >
                 <path d="M4.5 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM14.25 8.625a3.375 3.375 0 116.75 0 3.375 3.375 0 01-6.75 0zM1.5 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM17.25 19.128l-.001.144a2.25 2.25 0 01-.233.96 10.088 10.088 0 005.06-1.01.75.75 0 00.42-.643 4.875 4.875 0 00-6.957-4.611 8.586 8.586 0 011.71 5.157v.003z" />
               </svg>
-              <span className="ml-3">Choose client</span>
+              <span className="ml-3">
+                {bill.client == "" ? "Select client" : bill.client.name}
+              </span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -610,17 +631,63 @@ function CreateBill() {
               </div>
 
               <div>
-                {[...Array(20)].map((e, i) => {
+                {clients.map((e, i) => {
                   return (
-                    <div key={i}>
+                    <div
+                      key={i}
+                      onClick={() => {
+                        setBill({
+                          ...bill,
+                          client: e,
+                        });
+
+                        setSelectClientOpen(false);
+                      }}
+                    >
                       <div className="border-b bg-white py-4 px-6 space-y-2 hover:bg-slate-50 cursor-pointer">
                         <p className="text-sm text-slate-700 font-semibold">
-                          Craig bernard
+                          {e.name}
                         </p>
-                        <p className="text-xs text-slate-700 font-medium">
-                          craig@gmail.com
+                        <div className="flex items-center space-x-3">
+                          <div className="text-xs flex items-center text-slate-500 space-x-2">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke-width="1.5"
+                              stroke="currentColor"
+                              class="w-4 h-4 text-slate-700"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+                              />
+                            </svg>
+
+                            <span>{e.email}</span>
+                          </div>
+                          <div className="text-xs flex items-center text-slate-500 space-x-2">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke-width="1.5"
+                              stroke="currentColor"
+                              class="w-4 h-4 text-slate-700"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
+                              />
+                            </svg>
+                            <span>{e.phone}</span>
+                          </div>
+                        </div>
+                        <p className="text-xs text-slate-600 leading-6">
+                          {e.address}
                         </p>
-                        <p className="text-xs text-slate-500">+91 8859083234</p>
                       </div>
                     </div>
                   );
