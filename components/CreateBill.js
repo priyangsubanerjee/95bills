@@ -7,6 +7,7 @@ function CreateBill() {
   const dateref = useRef(null);
   const { createBillOpen, setCreateBillOpen } = useContext(GlobalStateContext);
   const [changeStatusOpen, setChangeStatusOpen] = useState(false);
+  const [selectClientOpen, setSelectClientOpen] = useState(false);
   const [addProductOpen, setAddProductOpen] = useState(false);
   useEffect(() => {
     dateref.current.valueAsDate = new Date();
@@ -41,7 +42,7 @@ function CreateBill() {
               Done
             </button>
           </div>
-          <div className="px-5 space-y-4">
+          <div className="px-5">
             <div className="h-12 text-sm bg-yellow-50 rounded-md px-5 flex items-center justify-between">
               <div className="flex font-medium items-center text-yellow-500 justify-center space-x-3">
                 <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
@@ -55,7 +56,7 @@ function CreateBill() {
               </button>
             </div>
 
-            <div className="flex mt-7 text-slate-800 text-sm items-center h-12 rounded-md">
+            <div className="flex mt-5 text-slate-800 text-sm items-center h-12 rounded-md">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -79,7 +80,7 @@ function CreateBill() {
               </svg>
             </div>
 
-            <div className="flex text-slate-800 text-sm items-center px-4 h-12 border rounded-md">
+            <div className="flex mt-5 text-slate-800 text-sm items-center px-4 h-12 border rounded-md">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -185,7 +186,7 @@ function CreateBill() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 h-full w-full bg-black/70 flex items-end lg:items-center justify-center closeStatusOptionCard z-20"
+            className="fixed inset-0 h-full w-full bg-black/70 flex items-end lg:items-center justify-center closeAddProductCard z-20"
           >
             <div className="h-fit max-h-screen overflow-y-auto lg:w-[450px] w-full bg-white lg:rounded-md pb-10">
               <div className="grid grid-cols-3 text-sm p-5">
