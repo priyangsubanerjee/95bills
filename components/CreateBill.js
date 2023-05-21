@@ -118,7 +118,7 @@ function CreateBill() {
                   />
                 </svg>
                 <span className="ml-3">No products added</span>
-                <button className="ml-auto text-blue-500 bg-blue-50 px-4 py-2 text-sm rounded">
+                <button className="ml-auto text-slate-700 bg-slate-50 px-4 py-2 text-sm rounded">
                   Add product
                 </button>
               </div>
