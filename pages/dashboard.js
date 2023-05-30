@@ -86,11 +86,7 @@ function Dashboard() {
               <button
                 className="lg:hidden"
                 onClick={() => {
-                  setLoadingOpen(true);
-
-                  setTimeout(() => {
-                    setLoadingOpen(false);
-                  }, 4000);
+                  setSidenavOpen(true);
                 }}
               >
                 <svg
