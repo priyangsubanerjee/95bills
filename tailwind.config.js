@@ -18,7 +18,7 @@ module.exports = {
       },
 
       animation: {
-        "slide-left": "slide-left 2s ease-in-out infinite",
+        "slide-left": "slide-left 1.5s ease-in-out infinite",
       },
       keyframes: {
         "slide-left": {
