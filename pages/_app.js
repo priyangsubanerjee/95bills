@@ -103,6 +103,12 @@ export default function App({
   const [createBillOpen, setCreateBillOpen] = useState(false);
   const [addClientOpen, setAddClientOpen] = useState(false);
   const [createBillStatus, setCreateBillStatus] = useState("due");
+  const [loadingOpen, setLoadingOpen] = useState(false);
+  const [loadingText, setLoadingText] = useState("Processing payment ...");
+
+  const changeLoadingText = (text) => {
+    setLoadingText(text);
+  };
 
   return (
     <GlobalStateContext.Provider
@@ -118,6 +124,9 @@ export default function App({
         setAddClientOpen,
         createBillStatus,
         setCreateBillStatus,
+        loadingOpen,
+        setLoadingOpen,
+        changeLoadingText,
       }}
     >
       <SessionProvider session={session}>

@@ -44,6 +44,8 @@ function Dashboard() {
     createBillStatus,
     setCreateBillStatus,
   } = useContext(GlobalStateContext);
+  const { loadingOpen, setLoadingOpen, changeLoadingText } =
+    useContext(GlobalStateContext);
   const router = useRouter();
   return (
     <>
@@ -83,7 +85,13 @@ function Dashboard() {
             <div className="flex items-center">
               <button
                 className="lg:hidden"
-                onClick={() => setSidenavOpen(true)}
+                onClick={() => {
+                  setLoadingOpen(true);
+
+                  setTimeout(() => {
+                    setLoadingOpen(false);
+                  }, 4000);
+                }}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
