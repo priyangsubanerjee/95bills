@@ -1,3 +1,4 @@
+import Loading from "@/components/Loading";
 import GlobalStateContext from "@/states/globalStateContext";
 import "@/styles/globals.css";
 import { SessionProvider } from "next-auth/react";
@@ -121,6 +122,7 @@ export default function App({
     >
       <SessionProvider session={session}>
         <Component {...pageProps} />
+        <Loading />
       </SessionProvider>
     </GlobalStateContext.Provider>
   );

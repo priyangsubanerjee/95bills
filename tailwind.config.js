@@ -16,6 +16,16 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+
+      animation: {
+        "slide-left": "slide-left 2s ease-in-out infinite",
+      },
+      keyframes: {
+        "slide-left": {
+          "0%": { transform: "translateX(-110%)" },
+          "100%": { transform: "translateX(200%)" },
+        },
+      },
     },
   },
   plugins: [],
